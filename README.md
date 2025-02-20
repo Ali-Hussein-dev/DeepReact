@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DeepReact.dev
 
-## Getting Started
+An open-source search engine for React ecosystem.
 
-First, run the development server:
+## What is DeepReact?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+DeepReact is a tiny search tool tailored for the React ecosystem. The React world evolves rapidly, and valuable content often gets buried soon after it’s shared. If creators lack a strong social media following or aren’t well-versed in SEO, their work tends to go unnoticed by most.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Why we built it?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The aim is to deliver quality content created by seasoned pros and open-source contributors, offering comprehensive insights into the React ecosystem and resources ranging from beginner-friendly to advanced. We’re cutting out low-effort articles, SEO-driven fluff, and AI-generated filler. At a smaller scale, I’ve realized it’s doable to craft unique features, like an integrated directory, making it a breeze to explore the ecosystem seamlessly.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How it works
 
-## Learn More
+While conventional search engines scan the web to uncover new sites and updated content, DeepReact takes a different approach — our content is handpicked by experts deeply familiar with the ecosystem. This allows our search algorithm to stay straightforward, as the resources are already vetted, eliminating the need to assess content quality using ranking algorithm. All we do is align the keywords with the titles.
 
-To learn more about Next.js, take a look at the following resources:
+## Mission
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Make quality content for React devs easily accessible and discoverable.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Techstack
 
-## Deploy on Vercel
+DeepReact is powered by modern and reliable technologies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Frontend: Next.js, React, TypeScript, shadcn-ui
+- Backend: Node.js, Vercel
+- Database: Supabase, Upstash
