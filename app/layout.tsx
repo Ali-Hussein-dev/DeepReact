@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Providers from "@/components/shared/providers";
 
 const fontSans = GeistSans;
 const fontMono = GeistMono;
@@ -30,7 +31,7 @@ export default function RootLayout({
         style={{ colorScheme: "dark" }}
       >
         <NextTopLoader color="#059669" showSpinner={false} speed={300} />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
