@@ -42,7 +42,7 @@ export const HeroSearchbar = () => {
       >
         <Input
           ref={inputRef}
-          placeholder="Search React content"
+          placeholder="Search React Ecosystem"
           value={input}
           onChange={(e) => {
             setInput(e.target.value);
