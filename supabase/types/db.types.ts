@@ -9,6 +9,54 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      contributors: {
+        Row: {
+          avatar_url: string | null;
+          bio: string | null;
+          created_at: string;
+          id: number;
+          is_draft: boolean;
+          name: string;
+          personal_website_url: string | null;
+          role: string | null;
+          twitter_username: string | null;
+          updated_at: string;
+          why: string;
+          youtube_channel_id: string | null;
+          youtube_username: string | null;
+        };
+        Insert: {
+          avatar_url?: string | null;
+          bio?: string | null;
+          created_at?: string;
+          id?: number;
+          is_draft?: boolean;
+          name: string;
+          personal_website_url?: string | null;
+          role?: string | null;
+          twitter_username?: string | null;
+          updated_at?: string;
+          why?: string;
+          youtube_channel_id?: string | null;
+          youtube_username?: string | null;
+        };
+        Update: {
+          avatar_url?: string | null;
+          bio?: string | null;
+          created_at?: string;
+          id?: number;
+          is_draft?: boolean;
+          name?: string;
+          personal_website_url?: string | null;
+          role?: string | null;
+          twitter_username?: string | null;
+          updated_at?: string;
+          why?: string;
+          youtube_channel_id?: string | null;
+          youtube_username?: string | null;
+        };
+        Relationships: [];
+      };
       webpages: {
         Row: {
           created_at: string | null;
@@ -62,7 +110,7 @@ export type Database = {
         Insert: {
           created_at?: string | null;
           domain: string;
-          id?: never;
+          id?: number;
           image_url: string;
           last_time_scraped?: string | null;
           search_url?: string | null;
@@ -73,7 +121,7 @@ export type Database = {
         Update: {
           created_at?: string | null;
           domain?: string;
-          id?: never;
+          id?: number;
           image_url?: string;
           last_time_scraped?: string | null;
           search_url?: string | null;
@@ -165,7 +213,18 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      get_contributors: {
+        Args: {
+          limit_count: number;
+          random_order: boolean;
+        };
+        Returns: {
+          name: string;
+          role: string;
+          bio: string;
+          avatar_url: string;
+        }[];
+      };
     };
     Enums: {
       [_ in never]: never;
@@ -275,6 +334,12 @@ export type CompositeTypes<
 
 // Schema: public
 // Tables
+export type Contributor = Database["public"]["Tables"]["contributors"]["Row"];
+export type InsertContributor =
+  Database["public"]["Tables"]["contributors"]["Insert"];
+export type UpdateContributor =
+  Database["public"]["Tables"]["contributors"]["Update"];
+
 export type Webpage = Database["public"]["Tables"]["webpages"]["Row"];
 export type InsertWebpage = Database["public"]["Tables"]["webpages"]["Insert"];
 export type UpdateWebpage = Database["public"]["Tables"]["webpages"]["Update"];
@@ -293,3 +358,9 @@ export type InsertYoutubeChannel =
   Database["public"]["Tables"]["youtube_channels"]["Insert"];
 export type UpdateYoutubeChannel =
   Database["public"]["Tables"]["youtube_channels"]["Update"];
+
+// Functions
+export type ArgsGetContributor =
+  Database["public"]["Functions"]["get_contributors"]["Args"];
+export type ReturnTypeGetContributor =
+  Database["public"]["Functions"]["get_contributors"]["Returns"];
