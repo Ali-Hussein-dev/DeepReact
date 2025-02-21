@@ -4,10 +4,10 @@ import { Footer } from "@/components/shared/footer";
 import { urls } from "@/constants/urls";
 
 const navItems = [
-  // {
-  //   name: "Contributors",
-  //   href: urls.internal.contributors,
-  // },
+  {
+    name: "Contributors",
+    href: urls.internal.contributors,
+  },
   {
     name: "Subscribe",
     href: urls.subscribe,
