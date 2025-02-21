@@ -19,7 +19,7 @@ if (!projectId) {
  *
  */
 exec(
-    `npx -y supabase gen types typescript --project-id ${projectId} > src/supabase/types/db.types.ts`,
+    `npx -y supabase gen types typescript --project-id ${projectId} > supabase/types/db.types.ts`,
     (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error:`, error);

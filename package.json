@@ -2,12 +2,15 @@
   "name": "deepreact",
   "version": "0.1.0",
   "private": true,
+  "type":"module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "tc": "tsc --noEmit -p tsconfig.json",
+    "schema": "node ./scripts/update-schema.js",
+    "gen:types": "pnpm schema && npx better-supabase-types -i ./supabase/types/db.types.ts -f -s",
     "cf:login": "pnpm dlx cloudflared tunnel login",
     "cf:run": "pnpm dlx cloudflared tunnel --url http://localhost:3000"
   },
