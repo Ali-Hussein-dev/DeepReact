@@ -130,9 +130,11 @@ export function SearchableContributorsList({
   const form = useForm({ defaultValues: { q: "" } });
   const { watch } = form;
   const { data, fetchStatus, refetch } = useQuery({
-    queryKey: ["searchAuthors", watch("q") ?? "initial"],
+    queryKey: ["searchContributors", watch("q") ?? "initial"],
     queryFn: async () =>
-      await fetch(`/api/authors?q=${watch("q")}`).then((res) => res.json()),
+      await fetch(`/api/contributors?q=${watch("q")}`).then((res) =>
+        res.json()
+      ),
     enabled: false,
     initialData: { data: initialContributors },
     select: (data) => data.data,
