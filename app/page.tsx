@@ -4,7 +4,7 @@ import { EarlyAccessForm } from "@/components/hero/early-access-form";
 import { RootLayout } from "@/components/shared/root-layout";
 
 const messages = [
-  "✅ Quality content crafted by industry experts",
+  "✅ Quality first content",
   "✅ Indepth coverage of React ecosystem",
   "✅ Beginer to expert level content",
   "❌ Low effort content",
