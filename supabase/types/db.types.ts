@@ -29,7 +29,7 @@ export type Database = {
           avatar_url?: string | null;
           bio?: string | null;
           created_at?: string;
-          id?: number;
+          id: number;
           is_draft?: boolean;
           name: string;
           personal_website_url?: string | null;

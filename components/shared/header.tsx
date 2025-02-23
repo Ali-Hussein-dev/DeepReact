@@ -71,7 +71,7 @@ const MobileNav = ({ Logo, navItems }: NavProps) => {
         isOpen && "z-40 size-full min-h-screen bg-background"
       )}
     >
-      <div className="pb-2 flex-row-between">
+      <div className="pb-2 flex justify-between items-center">
         {Logo}
         <Button
           onClick={() => setIsOpen(!isOpen)}

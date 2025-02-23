@@ -14,7 +14,7 @@ export const urls = {
   about:"https://www.notion.so/ali-hussein/About-Reactmemo-18dbbaf0004f80c9a502d7a12648098c",
   subscribe: "https://deepreact.substack.com",
 
-  githubPublic: "https://github.com/Ali-Hussein-dev/deepreact-public",
+  githubPublic: "https://github.com/Ali-Hussein-dev/deepreact",
   myTwitter: "https://x.com/alihussein_20",
 };
 
