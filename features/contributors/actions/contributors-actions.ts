@@ -3,6 +3,7 @@
 import { action } from "@/actions/safe-action";
 import { supabase } from "@/supabase/supabase-client";
 import { contributorSubmissionSchema } from "@/features/contributors/contributor-submission-schema";
+import { InsertContributor } from "@/supabase/types/db.types";
 // import { FieldError } from "react-hook-form";
 
 export const createContributorAction = action
@@ -16,7 +17,7 @@ export const createContributorAction = action
   .stateAction(async ({ parsedInput }) => {
     const { error } = await supabase
       .from("contributors")
-      .insert([{ ...parsedInput, is_draft: true }]);
+      .insert([{ ...parsedInput, is_draft: true } as InsertContributor]);
     // TODO: notify me when someone suggest a contributor
     if (error) {
       console.warn({ error });
