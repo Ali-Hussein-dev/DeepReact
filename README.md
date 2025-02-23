@@ -25,3 +25,11 @@ DeepReact is powered by modern and reliable technologies:
 - Frontend: Next.js, React, TypeScript, shadcn-ui
 - Backend: Node.js, Vercel
 - Database: Supabase, Upstash
+
+## Repo Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/949ffcbeb2f4eb6a63542901f50542ff1c34c09e.svg "Repobeats analytics image")
+
+## License
+
+This project is licensed under the [AGPL-3.0](https://opensource.org/licenses/AGPL-3.0) for non-commercial use.
