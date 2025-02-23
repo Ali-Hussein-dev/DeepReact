@@ -148,7 +148,7 @@ export type Database = {
           channel_title: string;
           created_at?: string | null;
           description?: string | null;
-          id?: never;
+          id: number;
           published_at?: string | null;
           thumbnails: Json;
           title: string;
@@ -160,7 +160,7 @@ export type Database = {
           channel_title?: string;
           created_at?: string | null;
           description?: string | null;
-          id?: never;
+          id?: number;
           published_at?: string | null;
           thumbnails?: Json;
           title?: string;
@@ -193,7 +193,7 @@ export type Database = {
           channel_title: string;
           channel_username: string;
           created_at?: string;
-          id?: never;
+          id: number;
           last_published_video_date?: string | null;
           updated_at?: string;
         };
@@ -202,7 +202,7 @@ export type Database = {
           channel_title?: string;
           channel_username?: string;
           created_at?: string;
-          id?: never;
+          id?: number;
           last_published_video_date?: string | null;
           updated_at?: string;
         };
@@ -213,6 +213,18 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      count_search_videos: {
+        Args: {
+          search_term: string;
+        };
+        Returns: number;
+      };
+      count_search_webpages: {
+        Args: {
+          search_term: string;
+        };
+        Returns: number;
+      };
       get_contributors: {
         Args: {
           limit_count: number;
@@ -223,6 +235,35 @@ export type Database = {
           role: string;
           bio: string;
           avatar_url: string;
+        }[];
+      };
+      search_webpages: {
+        Args: {
+          search_term: string;
+        };
+        Returns: {
+          title: string;
+          snippet: string;
+          link: string;
+          website_id: number;
+          website: Json;
+        }[];
+      };
+      search_youtube: {
+        Args: {
+          search_term: string;
+        };
+        Returns: {
+          channel_title: string;
+          created_at: string | null;
+          description: string | null;
+          id: number;
+          published_at: string | null;
+          thumbnails: Json;
+          title: string;
+          updated_at: string | null;
+          video_id: string;
+          youtube_channels_id: number | null;
         }[];
       };
     };
@@ -360,7 +401,27 @@ export type UpdateYoutubeChannel =
   Database["public"]["Tables"]["youtube_channels"]["Update"];
 
 // Functions
+export type ArgsCountSearchVideo =
+  Database["public"]["Functions"]["count_search_videos"]["Args"];
+export type ReturnTypeCountSearchVideo =
+  Database["public"]["Functions"]["count_search_videos"]["Returns"];
+
+export type ArgsCountSearchWebpage =
+  Database["public"]["Functions"]["count_search_webpages"]["Args"];
+export type ReturnTypeCountSearchWebpage =
+  Database["public"]["Functions"]["count_search_webpages"]["Returns"];
+
 export type ArgsGetContributor =
   Database["public"]["Functions"]["get_contributors"]["Args"];
 export type ReturnTypeGetContributor =
   Database["public"]["Functions"]["get_contributors"]["Returns"];
+
+export type ArgsSearchWebpage =
+  Database["public"]["Functions"]["search_webpages"]["Args"];
+export type ReturnTypeSearchWebpage =
+  Database["public"]["Functions"]["search_webpages"]["Returns"];
+
+export type ArgsSearchYoutube =
+  Database["public"]["Functions"]["search_youtube"]["Args"];
+export type ReturnTypeSearchYoutube =
+  Database["public"]["Functions"]["search_youtube"]["Returns"];
