@@ -20,7 +20,7 @@ const links = [
 const iconLinks = [
   {
     ICON: <BsGithub />,
-    href: urls.githubPublic,
+    href: urls.github,
   },
 ];
 //======================================

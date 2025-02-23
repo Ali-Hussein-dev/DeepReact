@@ -30,7 +30,7 @@ interface LoadingProps {
   interval?: number;
 }
 
-export function AnimatedText({ messages, interval = 2000 }: LoadingProps) {
+export function AnimatedText({ messages, interval = 3000 }: LoadingProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
