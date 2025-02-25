@@ -33,7 +33,6 @@ const tab = {
 };
 
 type UseSearchParams = {
-  category?: string | null;
   queryOptions?: Omit<
     UseQueryOptions<ApiSearchResponse, Error, ApiSearchResponse>,
     "queryKey" | "queryFn" | "initialData"
@@ -56,7 +55,7 @@ const useInputFocus = ({ key }: { key: string }) => {
   return { inputRef };
 };
 
-export const useSearch = ({ category, queryOptions = {} }: UseSearchParams) => {
+export const useSearch = ({ queryOptions = {} }: UseSearchParams) => {
   const { inputRef } = useInputFocus({ key: "s" });
   const searchParams = {
     // common

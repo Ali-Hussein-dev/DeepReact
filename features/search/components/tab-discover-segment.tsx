@@ -26,7 +26,7 @@ export function TabDiscoverSegment({
     input,
     setInput,
     onSubmit,
-  } = useSearch({ category: "4", queryOptions: { enabled: true } });
+  } = useSearch({ queryOptions: { enabled: true } });
   const data = res?.data;
   const error = res?.error;
   return (
