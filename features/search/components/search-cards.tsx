@@ -4,14 +4,25 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Webpage, Website, Youtube } from "@/supabase/types/db.types";
+import type {
+  Github,
+  Resource,
+  Webpage,
+  Website,
+  Youtube,
+} from "@/supabase/types/db.types";
 import { truncate, decodeHtmlEntities } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { YouTubeDialog } from "./youtube-dialog";
 import { formatDistanceToNow } from "date-fns";
+import { Badge } from "@/components/ui/badge";
+import { CiStar } from "react-icons/ci";
+import { MdOutlineArrowOutward } from "react-icons/md";
+import { FaGithub } from "react-icons/fa6";
 
 export type WebpageCardProps = Pick<Webpage, "link" | "title" | "snippet"> & {
   website: Pick<Website, "title" | "image_url">;
@@ -108,6 +119,106 @@ export function YouTubeCard(props: YouTubeCardProps) {
           </div>
         </div>
       </CardHeader>
+    </Card>
+  );
+}
+
+export type GitHubCardProps = Pick<
+  Resource,
+  "homepage" | "logo_url" | "name" | "tags" | "og_image_url" | "snippet"
+> & {
+  github_info: Pick<
+    Github,
+    | "avatar_url"
+    | "description"
+    | "homepage"
+    | "profile_url"
+    | "stars"
+    | "last_commit"
+  >;
+};
+//======================================
+export function GitHubCard(props: GitHubCardProps) {
+  const github_info = props?.github_info;
+  const logoUrl = props.logo_url || github_info?.avatar_url;
+  return (
+    <Card className="flex w-full flex-col border-dashed bg-card/40">
+      <CardHeader className="justify-between items-center flex-row flex">
+        <CardTitle>
+          {logoUrl && (
+            <img
+              src={logoUrl}
+              alt={"logo"}
+              className="my-0 mr-2 inline-block size-7 rounded-full border"
+            />
+          )}
+          {props.name}
+        </CardTitle>
+        {github_info?.stars && (
+          <span className="gap-1 justify-start items-center flex-row flex">
+            <CiStar size="18" />
+            {github_info.stars > 1000
+              ? `${(github_info.stars / 1000).toFixed(1)}k`
+              : github_info.stars}
+          </span>
+        )}
+      </CardHeader>
+      <CardContent className="grow">
+        <CardDescription className="line-clamp-2">
+          {props.snippet}
+        </CardDescription>
+        <div className="flex-wrap gap-1.5 py-3 flex justify-start items-center flex-row">
+          {props?.tags?.map((tag: string) => (
+            <Badge key={tag} className="capitalize" variant="secondary">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+      <CardFooter className="flex flex-col gap-2 border-t border-dashed py-3 sm:flex-row sm:items-center">
+        <div className="w-full grow gap-3 justify-between items-center flex-row flex">
+          {github_info?.last_commit ? (
+            <div className="text-muted-foreground/80 text-sm">
+              Last commit:{" "}
+              {formatDistanceToNow(new Date(github_info.last_commit), {
+                addSuffix: true,
+              })}
+            </div>
+          ) : (
+            <span></span>
+          )}
+          <div className="gap-2 justify-between items-center flex-row flex">
+            {github_info?.profile_url && (
+              <Button
+                size="icon"
+                asChild
+                variant="outline"
+                className="rounded-lg"
+              >
+                <a
+                  href={`https://github.com/${github_info.profile_url}`}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  <FaGithub size="17" />
+                </a>
+              </Button>
+            )}
+            {props?.homepage && (
+              <Button asChild variant={"outline"} size="icon">
+                <a
+                  href={props.homepage}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  {/* Visit */}
+                  <MdOutlineArrowOutward size="16" />
+                </a>
+              </Button>
+            )}
+          </div>
+        </div>
+      </CardFooter>
     </Card>
   );
 }

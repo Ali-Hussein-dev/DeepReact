@@ -65,7 +65,7 @@
   --destructive: hsl(0 84.2% 60.2%);
   --destructive-foreground: hsl(0 0% 100%);
   --border: hsl(240 5.5% 17.8%);
-  --input: hsl(240 5.5% 17.8%);
+  --input: hsl(240 5.5% 25.8%);
   --ring: hsl(240 3.8% 46.1%);
   --chart-1: hsl(220 70% 50%);
   --chart-2: hsl(160 60% 45%);
@@ -128,4 +128,7 @@
   .center {
     @apply flex items-center justify-center;
   }
+  .error{
+    @apply text-destructive mx-auto text-center p-8 text-lg
+}
 }

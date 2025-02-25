@@ -22,10 +22,10 @@ const tab = {
     path: "/api/search",
     value: "videos",
   },
-  // discover: {
-  //   path: "/api/discover",
-  //   value: "discover",
-  // },
+  discover: {
+    path: "/api/discover",
+    value: "discover",
+  },
   // jobs: {
   //   path: "/api/jobs",
   //   value: "jobs",
@@ -33,7 +33,6 @@ const tab = {
 };
 
 type UseSearchParams = {
-  category?: string | null;
   queryOptions?: Omit<
     UseQueryOptions<ApiSearchResponse, Error, ApiSearchResponse>,
     "queryKey" | "queryFn" | "initialData"
@@ -56,7 +55,7 @@ const useInputFocus = ({ key }: { key: string }) => {
   return { inputRef };
 };
 
-export const useSearch = ({ category, queryOptions = {} }: UseSearchParams) => {
+export const useSearch = ({ queryOptions = {} }: UseSearchParams) => {
   const { inputRef } = useInputFocus({ key: "s" });
   const searchParams = {
     // common
@@ -67,7 +66,7 @@ export const useSearch = ({ category, queryOptions = {} }: UseSearchParams) => {
     page: parseAsString,
 
     // specific to tab discover
-    category: category ? parseAsString.withDefault(category) : parseAsString,
+    category: parseAsString,
   };
   const [nuqsQueries, setNuqsQueries] = useQueryStates(searchParams, {
     clearOnDefault: false,
@@ -109,7 +108,7 @@ export const useSearch = ({ category, queryOptions = {} }: UseSearchParams) => {
     await setNuqsQueries({
       tab,
       page: "1",
-      category: category || null,
+      category: tab === "discover" ? "1" : null,
     });
     // don't refetch jobs, it will clean the initial data
     if (!queryOptions?.placeholderData) {
