@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      categories: {
+        Row: {
+          created_at: string | null;
+          id: number;
+          name: string;
+          string_synonyms: string;
+          synonyms: string[] | null;
+          updated_at: string | null;
+        };
+        Insert: {
+          created_at?: string | null;
+          id: number;
+          name: string;
+          string_synonyms?: string;
+          synonyms?: string[] | null;
+          updated_at?: string | null;
+        };
+        Update: {
+          created_at?: string | null;
+          id?: number;
+          name?: string;
+          string_synonyms?: string;
+          synonyms?: string[] | null;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
       contributors: {
         Row: {
           avatar_url: string | null;
@@ -56,6 +83,138 @@ export type Database = {
           youtube_username?: string | null;
         };
         Relationships: [];
+      };
+      github: {
+        Row: {
+          avatar_url: string;
+          created_at: string | null;
+          description: string | null;
+          homepage: string | null;
+          id: number;
+          last_commit: string | null;
+          profile_url: string | null;
+          stars: number;
+          updated_at: string | null;
+        };
+        Insert: {
+          avatar_url?: string;
+          created_at?: string | null;
+          description?: string | null;
+          homepage?: string | null;
+          id: number;
+          last_commit?: string | null;
+          profile_url?: string | null;
+          stars: number;
+          updated_at?: string | null;
+        };
+        Update: {
+          avatar_url?: string;
+          created_at?: string | null;
+          description?: string | null;
+          homepage?: string | null;
+          id?: number;
+          last_commit?: string | null;
+          profile_url?: string | null;
+          stars?: number;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
+      resource_categories: {
+        Row: {
+          category_id: number;
+          created_at: string | null;
+          id: number;
+          resource_id: number;
+          updated_at: string | null;
+        };
+        Insert: {
+          category_id: number;
+          created_at?: string | null;
+          id: number;
+          resource_id: number;
+          updated_at?: string | null;
+        };
+        Update: {
+          category_id?: number;
+          created_at?: string | null;
+          id?: number;
+          resource_id?: number;
+          updated_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "resource_categories_category_id_fkey";
+            columns: ["category_id"];
+            isOneToOne: false;
+            referencedRelation: "categories";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "resource_categories_resource_id_fkey";
+            columns: ["resource_id"];
+            isOneToOne: false;
+            referencedRelation: "resources";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      resources: {
+        Row: {
+          contributor_id: number | null;
+          created_at: string | null;
+          github_id: number | null;
+          homepage: string | null;
+          id: number;
+          logo_url: string | null;
+          name: string;
+          og_image_url: string | null;
+          snippet: string | null;
+          tags: string[] | null;
+          updated_at: string | null;
+        };
+        Insert: {
+          contributor_id?: number | null;
+          created_at?: string | null;
+          github_id?: number | null;
+          homepage?: string | null;
+          id: number;
+          logo_url?: string | null;
+          name: string;
+          og_image_url?: string | null;
+          snippet?: string | null;
+          tags?: string[] | null;
+          updated_at?: string | null;
+        };
+        Update: {
+          contributor_id?: number | null;
+          created_at?: string | null;
+          github_id?: number | null;
+          homepage?: string | null;
+          id?: number;
+          logo_url?: string | null;
+          name?: string;
+          og_image_url?: string | null;
+          snippet?: string | null;
+          tags?: string[] | null;
+          updated_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "resources_contributor_id_fkey";
+            columns: ["contributor_id"];
+            isOneToOne: false;
+            referencedRelation: "contributors";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "resources_github_id_fkey";
+            columns: ["github_id"];
+            isOneToOne: false;
+            referencedRelation: "github";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       webpages: {
         Row: {
@@ -237,6 +396,20 @@ export type Database = {
           avatar_url: string;
         }[];
       };
+      get_resources_by_category: {
+        Args: {
+          category_id: number;
+        };
+        Returns: {
+          name: string;
+          snippet: string;
+          homepage: string;
+          og_image_url: string;
+          logo_url: string;
+          tags: string[];
+          github_info: Json;
+        }[];
+      };
       search_webpages: {
         Args: {
           search_term: string;
@@ -375,11 +548,34 @@ export type CompositeTypes<
 
 // Schema: public
 // Tables
+export type Category = Database["public"]["Tables"]["categories"]["Row"];
+export type InsertCategory =
+  Database["public"]["Tables"]["categories"]["Insert"];
+export type UpdateCategory =
+  Database["public"]["Tables"]["categories"]["Update"];
+
 export type Contributor = Database["public"]["Tables"]["contributors"]["Row"];
 export type InsertContributor =
   Database["public"]["Tables"]["contributors"]["Insert"];
 export type UpdateContributor =
   Database["public"]["Tables"]["contributors"]["Update"];
+
+export type Github = Database["public"]["Tables"]["github"]["Row"];
+export type InsertGithub = Database["public"]["Tables"]["github"]["Insert"];
+export type UpdateGithub = Database["public"]["Tables"]["github"]["Update"];
+
+export type ResourceCategory =
+  Database["public"]["Tables"]["resource_categories"]["Row"];
+export type InsertResourceCategory =
+  Database["public"]["Tables"]["resource_categories"]["Insert"];
+export type UpdateResourceCategory =
+  Database["public"]["Tables"]["resource_categories"]["Update"];
+
+export type Resource = Database["public"]["Tables"]["resources"]["Row"];
+export type InsertResource =
+  Database["public"]["Tables"]["resources"]["Insert"];
+export type UpdateResource =
+  Database["public"]["Tables"]["resources"]["Update"];
 
 export type Webpage = Database["public"]["Tables"]["webpages"]["Row"];
 export type InsertWebpage = Database["public"]["Tables"]["webpages"]["Insert"];
@@ -415,6 +611,11 @@ export type ArgsGetContributor =
   Database["public"]["Functions"]["get_contributors"]["Args"];
 export type ReturnTypeGetContributor =
   Database["public"]["Functions"]["get_contributors"]["Returns"];
+
+export type ArgsGetResourceByCategory =
+  Database["public"]["Functions"]["get_resources_by_category"]["Args"];
+export type ReturnTypeGetResourceByCategory =
+  Database["public"]["Functions"]["get_resources_by_category"]["Returns"];
 
 export type ArgsSearchWebpage =
   Database["public"]["Functions"]["search_webpages"]["Args"];
