@@ -5,7 +5,8 @@ import { ImSpinner8 } from "react-icons/im";
 import * as React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { SearchLayout } from "./search-layout";
-import { FaYoutube } from "react-icons/fa6";
+import { IoCompassOutline } from "react-icons/io5";
+import { RiYoutubeLine } from "react-icons/ri";
 
 type TabName = "all" | "videos" | "jobs" | "discover";
 
@@ -40,7 +41,7 @@ const SearchTabs = ({
       onValueChange={handleTabChange}
       defaultValue="all"
       variant="default"
-      className="w-fit justify-start gap-1 overflow-hidden rounded-md pt-2"
+      className="w-fit justify-start gap-0 overflow-hidden rounded-md pt-2"
     >
       {[
         {
@@ -51,18 +52,18 @@ const SearchTabs = ({
         {
           name: "videos",
           label: "Videos",
-          Icon: FaYoutube,
+          Icon: RiYoutubeLine,
         },
         // {
         //   name: "jobs",
         //   label: "Jobs",
         //   Icon: SearchIcon,
         // },
-        // {
-        //   name: "discover",
-        //   label: "Discover",
-        //   Icon: SearchIcon,
-        // },
+        {
+          name: "discover",
+          label: "Discover",
+          Icon: IoCompassOutline,
+        },
       ].map((tab) => (
         <ToggleGroupItem
           key={tab.label}
@@ -70,9 +71,7 @@ const SearchTabs = ({
           value={tab.name}
           aria-label={`Toggle ${tab.name}`}
         >
-          {tab.Icon && (
-            <tab.Icon className="mr-0.5 size-5 text-muted-foreground" />
-          )}
+          {tab.Icon && <tab.Icon className="size-5 text-muted-foreground" />}
           {tab.label}
         </ToggleGroupItem>
       ))}
@@ -90,25 +89,27 @@ export function SearchBar({
   RightSide,
   ref,
 }: SearchBarProps) {
+  const isDiscovedTab = activeTab === "discover";
   return (
     <SearchLayout>
       <div>
         <form onSubmit={onSubmit} className="w-full">
-          <div className="w-full gap-2 flex justify-start items-center">
+          <div className="w-full gap-2 flex justify-start items-center group">
             <Input
               ref={ref}
               placeholder={placeholder}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="h-11 rounded-full border-dashed pl-5 text-lg sm:h-14"
+              className="h-11 rounded-full border-dashed pl-5 text-lg sm:h-14 disabled:hover:cursor-not-allowed"
+              disabled={isFetching || isDiscovedTab}
             />
             <Button
               size="icon"
               variant="outline"
-              className="size-11 rounded-full border-dashed sm:size-14 grow"
-              disabled={isFetching}
+              className="size-11 rounded-full border-dashed sm:size-14 grow disabled:hover:cursor-not-allowed"
+              disabled={isFetching || isDiscovedTab}
             >
-              {isFetching ? (
+              {isFetching && !isDiscovedTab ? (
                 <ImSpinner8 className="size-6 animate-spin" />
               ) : (
                 <SearchIcon className="size-6" />
