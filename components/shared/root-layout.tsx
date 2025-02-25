@@ -5,6 +5,10 @@ import { urls } from "@/constants/urls";
 
 const navItems = [
   {
+    name: "Submit",
+    href: urls.suggest,
+  },
+  {
     name: "Contributors",
     href: urls.internal.contributors,
   },
