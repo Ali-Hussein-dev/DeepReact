@@ -107,7 +107,7 @@ export function SearchBar({
               size="icon"
               variant="outline"
               className="size-11 rounded-full border-dashed sm:size-14 grow disabled:hover:cursor-not-allowed"
-              disabled={isFetching || isDiscovedTab}
+              disabled={isFetching || isDiscovedTab || !input}
             >
               {isFetching && !isDiscovedTab ? (
                 <ImSpinner8 className="size-6 animate-spin" />
