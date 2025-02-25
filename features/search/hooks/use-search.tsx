@@ -109,7 +109,7 @@ export const useSearch = ({ category, queryOptions = {} }: UseSearchParams) => {
     await setNuqsQueries({
       tab,
       page: "1",
-      category: category || null,
+      category: tab === "discover" ? "1" : null,
     });
     // don't refetch jobs, it will clean the initial data
     if (!queryOptions?.placeholderData) {
