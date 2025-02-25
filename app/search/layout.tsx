@@ -26,11 +26,13 @@ export default function SearchLayout({
     jobs: jobs,
     discover: discover,
   };
-  
+
   return (
     <RootLayout>
       <div className="container mx-auto p-2">
-        <RenderSlotBySearchParams param={"tab"} slots={slots} />
+        <React.Suspense>
+          <RenderSlotBySearchParams param={"tab"} slots={slots} />
+        </React.Suspense>
       </div>
     </RootLayout>
   );
