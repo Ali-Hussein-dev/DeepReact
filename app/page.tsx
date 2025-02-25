@@ -2,6 +2,7 @@ import { AnimatedText } from "@/components/hero/animated-text";
 import { EarlyAccessForm } from "@/components/hero/early-access-form";
 // import { HeroSearchbar } from "@/components/hero/hero-searchbar";
 import { RootLayout } from "@/components/shared/root-layout";
+import { StargazerSection } from "@/features/stargazer/components/stargazer-section";
 
 const messages = [
   "✅ Quality first content",
@@ -22,6 +23,7 @@ export default function Home() {
         <AnimatedText messages={messages} />
         <EarlyAccessForm />
         {/* <HeroSearchbar /> */}
+        <StargazerSection />
       </div>
     </RootLayout>
   );
