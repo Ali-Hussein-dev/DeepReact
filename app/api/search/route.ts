@@ -7,7 +7,7 @@ import { after, type NextRequest, NextResponse } from "next/server";
 export const GET = async (req: NextRequest) => {
   const url = new URL(req.url);
   const q = url.searchParams.get("q")?.trim() ?? "";
-  const page = +(url.searchParams.get("page") ?? 1);
+  const page = +(url.searchParams.get("page") ?? 1) ;
 
   const tab = url.searchParams.get("tab");
   const isValidTab = ["videos", "all"].includes(tab ?? "");
@@ -19,11 +19,14 @@ export const GET = async (req: NextRequest) => {
     });
   }
   let res = {};
+
+  // Don't skip any result
+  const offset = page == 1 ? 0 : page;
   if (tab === "videos") {
-    console.log({ tab });
-    res = await searchVideos({ q, offset: page });
+
+    res = await searchVideos({ q, offset });
   } else {
-    res = await searchWebpages({ q, offset: page });
+    res = await searchWebpages({ q, offset });
   }
 
   after(async () => {
