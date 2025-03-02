@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import type {
   Github,
+  Json,
   Resource,
   Webpage,
   Website,
@@ -168,9 +169,10 @@ export function GitHubCard(props: GitHubCardProps) {
           {props.snippet}
         </CardDescription>
         <div className="flex-wrap gap-1.5 py-3 flex justify-start items-center flex-row">
-          {props?.tags?.map((tag: string) => (
-            <Badge key={tag} className="capitalize" variant="secondary">
-              {tag}
+          {props?.tags?.map((tag, i) => (
+            <Badge key={i} variant="secondary">
+              {/* @ts-expect-error TS is not happy with this */}
+              {tag?.label}
             </Badge>
           ))}
         </div>
