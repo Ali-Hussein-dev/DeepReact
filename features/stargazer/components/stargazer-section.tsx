@@ -43,7 +43,7 @@ export const StargazerSection = () => {
           </div>
         </div>
         <p className="text-muted-foreground text-lg/7 max-w-prose text-center text-pretty sm:text-wrap">
-          Thanks for starring the GitHub repo!
+          Join our stargazers!
         </p>
 
         <div className="flex flex-col items-center gap-2">
