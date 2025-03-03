@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 //======================================
 export function RenderSlotBySearchParams({
   param,
@@ -11,7 +11,12 @@ export function RenderSlotBySearchParams({
 }) {
   const searchParams = useSearchParams();
   const tab = searchParams?.get(param) as string;
-  const renderTab = slots[tab] || <div className="">No slot for {param}</div>;
-
+  const renderTab = slots[tab];
+  const router = useRouter();
+  React.useEffect(() => {
+    if (router && !renderTab) {
+      router.push(`/`);
+    }
+  }, []);
   return <>{renderTab}</>;
 }
