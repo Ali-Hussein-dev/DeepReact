@@ -375,6 +375,12 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      count_resources_by_category: {
+        Args: {
+          categoryid: number;
+        };
+        Returns: number;
+      };
       count_search_videos: {
         Args: {
           search_term: string;
@@ -600,6 +606,11 @@ export type UpdateYoutubeChannel =
   Database["public"]["Tables"]["youtube_channels"]["Update"];
 
 // Functions
+export type ArgsCountResourceByCategory =
+  Database["public"]["Functions"]["count_resources_by_category"]["Args"];
+export type ReturnTypeCountResourceByCategory =
+  Database["public"]["Functions"]["count_resources_by_category"]["Returns"];
+
 export type ArgsCountSearchVideo =
   Database["public"]["Functions"]["count_search_videos"]["Args"];
 export type ReturnTypeCountSearchVideo =
