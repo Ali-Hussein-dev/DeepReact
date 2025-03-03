@@ -64,7 +64,7 @@ export function TabVidoesSegment() {
           {fetchStatus === "idle" && !data && <IdleStatus />}
           {isSuccess && (
             <>
-              <div className="space-y-4">
+              <div className="space-y-4 mb-3">
                 {data?.results?.map((result: YouTubeCardProps, i) => (
                   <YouTubeCard key={result.title + i} {...result} />
                 ))}

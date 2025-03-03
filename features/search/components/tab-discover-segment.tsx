@@ -64,16 +64,18 @@ export function TabDiscoverSegment({
               </div>
             }
           />
-          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="space-y-4">
             {/* <pre className="mt-4 text-wrap rounded border border-dashed border-gray-800 p-2">
             {JSON.stringify(data, null, 2)}
             </pre> */}
             {!isFetching && isSuccess && (
               <>
-                {data?.results?.map((props: GitHubCardProps, i) => (
-                  <GitHubCard key={props.name + i} {...props} />
-                ))}
-                <div className="border-t border-dashed pt-1 md:col-span-2">
+                <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+                  {data?.results?.map((props: GitHubCardProps, i) => (
+                    <GitHubCard key={props.name + i} {...props} />
+                  ))}
+                </div>
+                <div className="border-t border-dashed pt-1">
                   <Pagination
                     total={data?.count ?? 0}
                     onChange={(page) => handlePageChange(page + "")}
@@ -81,7 +83,7 @@ export function TabDiscoverSegment({
                   />
                 </div>
                 {error && (
-                  <div className="error md:col-span-2">{error.message}</div>
+                  <div className="error">{error.message}</div>
                 )}
               </>
             )}
