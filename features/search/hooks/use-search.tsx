@@ -127,7 +127,7 @@ export const useSearch = ({ queryOptions = {} }: UseSearchParams) => {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (q) {
+    if (input) {
       await setNuqsQueries({ q: input, page: "1" });
       await refetch();
     }
