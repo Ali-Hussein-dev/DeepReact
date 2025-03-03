@@ -61,7 +61,7 @@ export function TabVidoesSegment() {
               </p>
             )}
           </div> */}
-          {fetchStatus === "idle" && !data && <IdleStatus />}
+          {fetchStatus === "idle" && !data && !error && <IdleStatus />}
           {isSuccess && (
             <>
               <div className="space-y-4 mb-3">
@@ -69,6 +69,7 @@ export function TabVidoesSegment() {
                   <YouTubeCard key={result.title + i} {...result} />
                 ))}
               </div>
+              {error && <p className="error">{error?.message}</p>}
               <div className="border-t border-dashed pt-1">
                 <Pagination
                   total={data?.count ?? 0}
@@ -76,7 +77,6 @@ export function TabVidoesSegment() {
                   initialPage={+(nuqsQueries.page || 1)}
                 />
               </div>
-              {error && <p className="error">{error?.message}</p>}
             </>
           )}
         </>

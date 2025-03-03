@@ -71,7 +71,7 @@ export function TabAllSegment() {
               </div>
             }
           />
-          {fetchStatus === "idle" && !data && <IdleStatus />}
+          {fetchStatus === "idle" && !data && !error && <IdleStatus />}
           {isSuccess && (
             <>
               <div className="mb-3 space-y-4">
@@ -80,6 +80,7 @@ export function TabAllSegment() {
                     <WebpageCard key={result.title + i + 10} {...result} />
                   ))}
               </div>
+              {error && <p className="error">{error?.message}</p>}
               <div className="border-t border-dashed pt-1">
                 <Pagination
                   total={data?.count ?? 0}
@@ -87,7 +88,6 @@ export function TabAllSegment() {
                   initialPage={+(nuqsQueries.page || 1)}
                 />
               </div>
-              {error && <p className="error">{error?.message}</p>}
             </>
           )}
         </div>
