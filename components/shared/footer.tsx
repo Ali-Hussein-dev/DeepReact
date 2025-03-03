@@ -26,9 +26,9 @@ const iconLinks = [
 //======================================
 export function Footer() {
   return (
-    <footer className="container w-full gap-4 border-t border-dashed px-2 py-4 flex justify-between items-center md:px-0">
+    <footer className="container w-full gap-4 border-t border-dashed px-2 py-4 flex justify-between items-center flex-wrap md:px-0 ">
       <p>&copy; {new Date().getFullYear()} DeepReact.dev</p>
-      <div className="gap-2 flex items-center justify-center">
+      <div className="gap-2 flex items-center justify-center flex-wrap">
         {links.map((link) => (
           <Button key={link.label} variant="link" className="px-1" asChild>
             <Link href={link.href} prefetch={false}>
