@@ -10,6 +10,7 @@ import { Pagination } from "@/components/shared/pagination";
 import { useSearch } from "@/features/search/hooks/use-search";
 import { SearchBar } from "./search-bar";
 import { SearchLayout } from "./search-layout";
+import { IdleStatus } from "./idle-status";
 
 //======================================
 export function TabAllSegment() {
@@ -23,7 +24,7 @@ export function TabAllSegment() {
     handleTabChange,
     handlePageChange,
     nuqsQueries,
-    // fetchStatus,
+    fetchStatus,
     inputRef,
   } = useSearch({ queryOptions: { enabled: false } });
   const data = res?.data;
@@ -70,6 +71,7 @@ export function TabAllSegment() {
               </div>
             }
           />
+          {fetchStatus === "idle" && !data && <IdleStatus />}
           {isSuccess && (
             <>
               <div className="mb-3 space-y-4">

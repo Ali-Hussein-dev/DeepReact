@@ -10,6 +10,7 @@ import { Pagination } from "@/components/shared/pagination";
 import { useSearch } from "@/features/search/hooks/use-search";
 import { SearchLayout } from "@/features/search/components/search-layout";
 import { Loading } from "@/features/search/components/loading";
+import { IdleStatus } from "./idle-status";
 
 //======================================
 export function TabVidoesSegment() {
@@ -22,8 +23,8 @@ export function TabVidoesSegment() {
     onSubmit,
     handleTabChange,
     handlePageChange,
-    // fetchStatus,
-    nuqsQueries
+    fetchStatus,
+    nuqsQueries,
   } = useSearch({ queryOptions: { enabled: false } });
   const data = res?.data;
   const error = res?.error;
@@ -60,6 +61,7 @@ export function TabVidoesSegment() {
               </p>
             )}
           </div> */}
+          {fetchStatus === "idle" && !data && <IdleStatus />}
           {isSuccess && (
             <>
               <div className="space-y-4">
