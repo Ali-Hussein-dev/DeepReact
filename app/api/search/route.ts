@@ -21,9 +21,9 @@ export const GET = async (req: NextRequest) => {
   let res = {};
 
   // Don't skip any result
-  const offset = page == 1 ? 0 : page;
-  if (tab === "videos") {
+  const offset = page == 1 ? 0 : page + 10;
 
+  if (tab === "videos") {
     res = await searchVideos({ q, offset });
   } else {
     res = await searchWebpages({ q, offset });
