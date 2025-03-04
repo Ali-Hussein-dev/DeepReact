@@ -18,21 +18,33 @@ export function EarlyAccessForm() {
     initialState
   );
   return (
-    <form
-      action={serverAction}
-      className="mx-auto w-full max-w-md gap-4 flex flex-col items-center"
-    >
-      {state.success && <p className="text-green-500">{state.message}</p>}
-      <Input name="email" placeholder="Enter your email" className="h-10" />
-      <div className="gap-2 flex items-center justify-center">
-        {/* <Button type="button" asChild variant="outline">
-          <a href={urls.github} target="_blank" rel="noreferrer">
-            <BsGithub />
-            GitHub
-          </a>
-        </Button> */}
-        <Button>{isPending ? "Saving..." : "Join waitlist"}</Button>
-      </div>
-    </form>
+    <div className="mx-auto w-full max-w-lg">
+      <form
+        action={serverAction}
+        className="w-full gap-4 flex jusitify-start p-3 rounded-xl items-center border "
+      >
+        <Input
+          name="email"
+          placeholder="Enter your email"
+          className="h-10 border-none"
+        />
+        <div className="gap-2 flex items-center justify-center">
+          {/* <Button type="button" asChild variant="outline">
+            <a href={urls.github} target="_blank" rel="noreferrer">
+              <BsGithub />
+              GitHub
+            </a>
+          </Button> */}
+          <Button size="lg" className="font-semibold text-base">
+            {isPending ? "Saving..." : "Join waitlist"}
+          </Button>
+        </div>
+      </form>
+      {state.success && (
+        <p className="text-muted-foreground text-center pt-3">
+          {state.message}
+        </p>
+      )}
+    </div>
   );
 }

@@ -12,6 +12,7 @@ export const urls = {
     privacy:"https://www.notion.so/ali-hussein/Privacy-Policy-18dbbaf0004f805daa4ce6b5b76f9fe7",
   },
   about:"https://www.notion.so/ali-hussein/About-Reactmemo-18dbbaf0004f80c9a502d7a12648098c",
+  suggest:"https://ali-hussein.notion.site/1a5bbaf0004f80d28cd3da6ab27c1e43?pvs=105",
   subscribe: "https://deepreact.substack.com",
 
   github: "https://github.com/Ali-Hussein-dev/deepreact",

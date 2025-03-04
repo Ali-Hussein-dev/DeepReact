@@ -10,6 +10,7 @@ import { useSearch } from "@/features/search/hooks/use-search";
 import { SearchBar } from "@/features/search/components/search-bar";
 import { SearchLayout } from "@/features/search/components/search-layout";
 import { Loading } from "@/features/search/components/loading";
+import { Pagination } from "@/components/shared/pagination";
 //======================================
 export function TabDiscoverSegment({
   categories,
@@ -22,6 +23,7 @@ export function TabDiscoverSegment({
     isSuccess,
     handleTabChange,
     handleCategoryChange,
+    handlePageChange,
     nuqsQueries,
     input,
     setInput,
@@ -56,23 +58,32 @@ export function TabDiscoverSegment({
             hasData={Array.isArray(data?.results)}
             Skeleton={
               <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
-                {[...Array(4)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                   <CardSkeleton key={i} />
                 ))}
               </div>
             }
           />
-          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="space-y-4">
             {/* <pre className="mt-4 text-wrap rounded border border-dashed border-gray-800 p-2">
             {JSON.stringify(data, null, 2)}
             </pre> */}
             {!isFetching && isSuccess && (
               <>
-                {data?.results?.map((props: GitHubCardProps, i) => (
-                  <GitHubCard key={props.name + i} {...props} />
-                ))}
+                <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+                  {data?.results?.map((props: GitHubCardProps, i) => (
+                    <GitHubCard key={props.name + i} {...props} />
+                  ))}
+                </div>
+                <div className="border-t border-dashed pt-1">
+                  <Pagination
+                    total={data?.count ?? 0}
+                    onChange={(page) => handlePageChange(page + "")}
+                    initialPage={+(nuqsQueries.page || 1)}
+                  />
+                </div>
                 {error && (
-                  <div className="error md:col-span-2">{error.message}</div>
+                  <div className="error">{error.message}</div>
                 )}
               </>
             )}

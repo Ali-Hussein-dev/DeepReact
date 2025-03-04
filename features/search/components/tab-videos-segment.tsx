@@ -10,6 +10,7 @@ import { Pagination } from "@/components/shared/pagination";
 import { useSearch } from "@/features/search/hooks/use-search";
 import { SearchLayout } from "@/features/search/components/search-layout";
 import { Loading } from "@/features/search/components/loading";
+import { IdleStatus } from "./idle-status";
 
 //======================================
 export function TabVidoesSegment() {
@@ -22,8 +23,8 @@ export function TabVidoesSegment() {
     onSubmit,
     handleTabChange,
     handlePageChange,
-    // fetchStatus,
-    nuqsQueries
+    fetchStatus,
+    nuqsQueries,
   } = useSearch({ queryOptions: { enabled: false } });
   const data = res?.data;
   const error = res?.error;
@@ -60,13 +61,15 @@ export function TabVidoesSegment() {
               </p>
             )}
           </div> */}
+          {fetchStatus === "idle" && !data && !error && <IdleStatus />}
           {isSuccess && (
             <>
-              <div className="space-y-4">
+              <div className="space-y-4 mb-3">
                 {data?.results?.map((result: YouTubeCardProps, i) => (
                   <YouTubeCard key={result.title + i} {...result} />
                 ))}
               </div>
+              {error && <p className="error">{error?.message}</p>}
               <div className="border-t border-dashed pt-1">
                 <Pagination
                   total={data?.count ?? 0}
@@ -74,7 +77,6 @@ export function TabVidoesSegment() {
                   initialPage={+(nuqsQueries.page || 1)}
                 />
               </div>
-              {error && <p className="error">{error?.message}</p>}
             </>
           )}
         </>

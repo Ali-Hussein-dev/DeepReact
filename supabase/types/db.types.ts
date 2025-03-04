@@ -20,7 +20,7 @@ export type Database = {
         };
         Insert: {
           created_at?: string | null;
-          id: number;
+          id?: number;
           name: string;
           string_synonyms?: string;
           synonyms?: string[] | null;
@@ -101,7 +101,7 @@ export type Database = {
           created_at?: string | null;
           description?: string | null;
           homepage?: string | null;
-          id: number;
+          id?: number;
           last_commit?: string | null;
           profile_url?: string | null;
           stars: number;
@@ -131,7 +131,7 @@ export type Database = {
         Insert: {
           category_id: number;
           created_at?: string | null;
-          id: number;
+          id?: number;
           resource_id: number;
           updated_at?: string | null;
         };
@@ -170,7 +170,7 @@ export type Database = {
           name: string;
           og_image_url: string | null;
           snippet: string | null;
-          tags: string[] | null;
+          tags: Json[];
           updated_at: string | null;
         };
         Insert: {
@@ -178,12 +178,12 @@ export type Database = {
           created_at?: string | null;
           github_id?: number | null;
           homepage?: string | null;
-          id: number;
+          id?: number;
           logo_url?: string | null;
           name: string;
           og_image_url?: string | null;
           snippet?: string | null;
-          tags?: string[] | null;
+          tags: Json[];
           updated_at?: string | null;
         };
         Update: {
@@ -196,7 +196,7 @@ export type Database = {
           name?: string;
           og_image_url?: string | null;
           snippet?: string | null;
-          tags?: string[] | null;
+          tags?: Json[];
           updated_at?: string | null;
         };
         Relationships: [
@@ -307,7 +307,7 @@ export type Database = {
           channel_title: string;
           created_at?: string | null;
           description?: string | null;
-          id: number;
+          id?: number;
           published_at?: string | null;
           thumbnails: Json;
           title: string;
@@ -339,6 +339,7 @@ export type Database = {
       };
       youtube_channels: {
         Row: {
+          avatar_url: string | null;
           channel_id: string | null;
           channel_title: string;
           channel_username: string;
@@ -348,15 +349,17 @@ export type Database = {
           updated_at: string;
         };
         Insert: {
+          avatar_url?: string | null;
           channel_id?: string | null;
           channel_title: string;
           channel_username: string;
           created_at?: string;
-          id: number;
+          id?: number;
           last_published_video_date?: string | null;
           updated_at?: string;
         };
         Update: {
+          avatar_url?: string | null;
           channel_id?: string | null;
           channel_title?: string;
           channel_username?: string;
@@ -372,6 +375,12 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      count_resources_by_category: {
+        Args: {
+          categoryid: number;
+        };
+        Returns: number;
+      };
       count_search_videos: {
         Args: {
           search_term: string;
@@ -406,7 +415,7 @@ export type Database = {
           homepage: string;
           og_image_url: string;
           logo_url: string;
-          tags: string[];
+          tags: Json[];
           github_info: Json;
         }[];
       };
@@ -597,6 +606,11 @@ export type UpdateYoutubeChannel =
   Database["public"]["Tables"]["youtube_channels"]["Update"];
 
 // Functions
+export type ArgsCountResourceByCategory =
+  Database["public"]["Functions"]["count_resources_by_category"]["Args"];
+export type ReturnTypeCountResourceByCategory =
+  Database["public"]["Functions"]["count_resources_by_category"]["Returns"];
+
 export type ArgsCountSearchVideo =
   Database["public"]["Functions"]["count_search_videos"]["Args"];
 export type ReturnTypeCountSearchVideo =

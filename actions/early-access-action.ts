@@ -38,6 +38,6 @@ export const earlyAccessAction = async (_prvState: ActionResponse | null, data: 
 
     return {
         success: true,
-        message: 'Email added to waiting list',
+        message: "You've been added to the waitlist",
     }
 }

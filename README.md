@@ -26,6 +26,9 @@ DeepReact is powered by modern and reliable technologies:
 - Backend: Node.js, Vercel
 - Database: Supabase, Upstash
 
+## Suggest resource or contributor
+
+To suggest a new resource or contributor, please fill out the [suggest a resource or contributor form](https://ali-hussein.notion.site/1a5bbaf0004f80d28cd3da6ab27c1e43?pvs=105).
 ## Repo Activity
 
 ![Alt](https://repobeats.axiom.co/api/embed/949ffcbeb2f4eb6a63542901f50542ff1c34c09e.svg "Repobeats analytics image")
