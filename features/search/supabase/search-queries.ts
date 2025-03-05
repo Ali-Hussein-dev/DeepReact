@@ -70,9 +70,6 @@ async function fetchVideos({ search_term, offset }: { search_term: string; offse
       .rpc("search_youtube", {
        search_term,
       })
-      .select(
-        "title, description, video_id, published_at, channel_title, thumbnails",
-      )
       .range(offset, offset + 10)
       .limit(10),
   ])
