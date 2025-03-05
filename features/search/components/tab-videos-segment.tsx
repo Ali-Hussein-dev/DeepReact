@@ -66,7 +66,10 @@ export function TabVidoesSegment() {
             <>
               <div className="space-y-4 mb-3">
                 {data?.results?.map((result: YouTubeCardProps, i) => (
-                  <YouTubeCard key={result.title + i} {...result} />
+                  <YouTubeCard
+                    key={(result.title as string) + i}
+                    {...result}
+                  />
                 ))}
               </div>
               {error && <p className="error">{error?.message}</p>}
