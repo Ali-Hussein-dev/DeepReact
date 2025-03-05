@@ -10,11 +10,10 @@ import {
 } from "@/components/ui/card";
 import type {
   Github,
-  Json,
   Resource,
+  ReturnTypeSearchYoutube,
   Webpage,
   Website,
-  Youtube,
 } from "@/supabase/types/db.types";
 import { truncate, decodeHtmlEntities } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -24,6 +23,7 @@ import { Badge } from "@/components/ui/badge";
 import { CiStar } from "react-icons/ci";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { FaGithub } from "react-icons/fa6";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 export type WebpageCardProps = Pick<Webpage, "link" | "title" | "snippet"> & {
   website: Pick<Website, "title" | "image_url">;
@@ -79,38 +79,44 @@ export function CardSkeleton() {
   return <Skeleton className="h-32 w-full md:h-44" />;
 }
 
-export type YouTubeCardProps = Pick<
-  Youtube,
-  | "channel_title"
-  | "description"
-  | "published_at"
-  | "title"
-  | "video_id"
-  | "thumbnails"
->;
+export type YouTubeCardProps = ReturnTypeSearchYoutube[number];
+
+type ChannelDetails = {
+  channel_title: string;
+  avatar_url: string;
+};
+type Thumbnails = {
+  medium: {
+    url: string;
+  };
+};
 //======================================
 export function YouTubeCard(props: YouTubeCardProps) {
+  const channel_details = props?.channel_details as ChannelDetails;
+  const thumbnails = props?.thumbnails as Thumbnails;
   return (
     <Card className="overlflow-hidden rounded-md border-none shadow-none bg-transparent">
       <CardHeader className="flex flex-row items-start gap-2 space-y-0 p-0">
         {props.video_id ? (
           <YouTubeDialog
-            videoId={props.video_id}
-            // @ts-expect-error thumbnails is json type
-            thumbnailUrl={props.thumbnails?.medium?.url as string}
+            videoId={props.video_id as string}
+            thumbnailUrl={thumbnails?.medium?.url as string}
           />
         ) : (
           <div>video_id is not valid {props.video_id}</div>
         )}
         <div className="w-full gap-2 p-0.5 flex flex-col items-start lg:pt-3">
           <CardTitle className="line-clamp-2 font-semibold md:text-lg lg:text-xl pt-1 capitalize leading-5">
-            {truncate(decodeHtmlEntities(props.title), 50)}
+            {truncate(decodeHtmlEntities(props.title as string), 50)}
           </CardTitle>
           {/* <CardDescription className="mb-1 line-clamp-1 text-sm md:w-[90%] lg:line-clamp-2">
             {props.description}
           </CardDescription> */}
           <div className="w-full gap-1 pt-1 text-xs md:text-base text-muted-foreground/80 flex justify-start items-center">
-            <span className="">{props.channel_title}</span> <span>-</span>
+            <Avatar>
+              <AvatarImage src={channel_details?.avatar_url} />
+            </Avatar>
+            <span>{channel_details?.channel_title}</span> <span>-</span>
             <span className="">
               {props.published_at &&
                 formatDistanceToNow(new Date(props.published_at), {

@@ -56,7 +56,7 @@ export type Database = {
           avatar_url?: string | null;
           bio?: string | null;
           created_at?: string;
-          id: number;
+          id?: number;
           is_draft?: boolean;
           name: string;
           personal_website_url?: string | null;
@@ -435,25 +435,20 @@ export type Database = {
         Args: {
           search_term: string;
         };
-        Returns: {
-          channel_title: string;
-          created_at: string | null;
-          description: string | null;
-          id: number;
-          published_at: string | null;
-          thumbnails: Json;
-          title: string;
-          updated_at: string | null;
-          video_id: string;
-          youtube_channels_id: number | null;
-        }[];
+        Returns: Database["public"]["CompositeTypes"]["youtube_with_channel_details"][];
       };
     };
     Enums: {
       [_ in never]: never;
     };
     CompositeTypes: {
-      [_ in never]: never;
+      youtube_with_channel_details: {
+        title: string | null;
+        video_id: string | null;
+        published_at: string | null;
+        thumbnails: Json | null;
+        channel_details: Json | null;
+      };
     };
   };
 };
