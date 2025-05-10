@@ -1,3 +1,5 @@
+![Alt text](https://deepreact.dev/opengraph-image.jpg?f58629dd580bb385)
+
 # DeepReact.dev
 
 An open-source search engine for React ecosystem.

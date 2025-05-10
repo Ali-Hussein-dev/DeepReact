@@ -1,7 +1,7 @@
 import { urls } from "@/constants/urls";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { BsGithub } from "react-icons/bs";
+import { BsGithub, BsTwitterX } from "react-icons/bs";
 
 const links = [
   {
@@ -22,6 +22,10 @@ const iconLinks = [
     ICON: <BsGithub />,
     href: urls.github,
   },
+  {
+    ICON: <BsTwitterX />,
+    href: urls.myTwitter,
+  },
 ];
 //======================================
 export function Footer() {
@@ -36,13 +40,21 @@ export function Footer() {
             </Link>
           </Button>
         ))}
-        {iconLinks.map((link, i) => (
-          <Button key={i} variant="link" className="px-1" asChild>
-            <Link href={link.href} prefetch={false}>
-              {link.ICON}
-            </Link>
-          </Button>
-        ))}
+        <div className="flex items-center justify-center flex-wrap">
+          {iconLinks.map((link, i) => (
+            <Button
+              key={i}
+              variant="ghost"
+              className="px-1"
+              asChild
+              size="icon"
+            >
+              <Link href={link.href} prefetch={false}>
+                {link.ICON}
+              </Link>
+            </Button>
+          ))}
+        </div>
       </div>
     </footer>
   );
