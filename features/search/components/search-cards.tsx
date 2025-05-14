@@ -69,7 +69,7 @@ export function WebpageCard(props: WebpageCardProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription className="text-sm">{props.snippet}</CardDescription>
+        <CardDescription className="text-sm line-clamp-2">{props.snippet}</CardDescription>
       </CardContent>
     </Card>
   );
