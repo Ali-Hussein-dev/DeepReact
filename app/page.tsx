@@ -6,10 +6,10 @@ import { StargazerSection } from "@/features/stargazer/components/stargazer-sect
 
 const messages = [
   "✅ Quality first content",
-  "✅ Indepth coverage of React ecosystem",
-  "✅ Beginer to expert level content",
-  "❌ Low effort content",
-  "❌ Articles written for SEO",
+  "❌ Low quality content",
+  "✅ Content written by industry experts",
+  "❌ SEO-driven content",
+  "✅ Handpicked content",
   "❌ AI-generated content",
 ];
 

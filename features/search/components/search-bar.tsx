@@ -59,11 +59,11 @@ const SearchTabs = ({
         //   label: "Jobs",
         //   Icon: SearchIcon,
         // },
-        {
-          name: "discover",
-          label: "Discover",
-          Icon: IoCompassOutline,
-        },
+        // {
+        //   name: "discover",
+        //   label: "Discover",
+        //   Icon: IoCompassOutline,
+        // },
       ].map((tab) => (
         <ToggleGroupItem
           key={tab.label}
