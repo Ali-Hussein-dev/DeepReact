@@ -2,12 +2,14 @@ import {
   searchVideos,
   searchWebpages,
 } from "@/features/search/supabase/search-queries";
+import { Redis } from "@upstash/redis";
+
 import { after, type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   const url = new URL(req.url);
   const q = url.searchParams.get("q")?.trim() ?? "";
-  const page = +(url.searchParams.get("page") ?? 1) ;
+  const page = +(url.searchParams.get("page") ?? 1);
 
   const tab = url.searchParams.get("tab");
   const isValidTab = ["videos", "all"].includes(tab ?? "");
@@ -18,7 +20,8 @@ export const GET = async (req: NextRequest) => {
       error: { message: "Search queries are not valid", reason: { q, tab } },
     });
   }
-  let res = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let res:any = {};
 
   // Don't skip any result
   const offset = page == 1 ? 0 : page + 10;
@@ -32,11 +35,23 @@ export const GET = async (req: NextRequest) => {
   after(async () => {
     // TODO:
     // store query in Redis
+
     console.info("Run 'after' function for search");
+    if (offset === 0) {
+      const redis = Redis.fromEnv();
+      await redis.sadd(
+        "search-queries",
+        JSON.stringify({
+          q,
+          resultsCount: res?.data?.count ?? 0,
+          tab,
+          createdAt: new Date().toISOString(),
+        })
+      );
+    }
   });
   // TODO:
   // Add rate limiting
-  // @ts-expect-error at runtime type is correct
   if (!res?.data?.count) {
     return NextResponse.json({
       data: null,

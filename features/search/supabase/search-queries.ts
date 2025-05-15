@@ -30,8 +30,6 @@ export async function searchWebpages({
   offset: number;
 }) {
   let search_term = q.replaceAll(" ", "&");
-  console.log({ search_term });
-
   const [
     { data: count, error: countError },
     { data: results, error: resultError },
@@ -42,7 +40,6 @@ export async function searchWebpages({
     console.error("⚠️ ~ search Webpages: ", { countError, resultError });
     return { data: null, error: countError || resultError };
   }
-  console.log({count})
   if (count == 0) {
     // recall with different operator
     search_term = q.replaceAll(" ", " | ");

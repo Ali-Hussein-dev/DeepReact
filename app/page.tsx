@@ -5,12 +5,12 @@ import { RootLayout } from "@/components/shared/root-layout";
 import { StargazerSection } from "@/features/stargazer/components/stargazer-section";
 
 const messages = [
-  "✅ Quality first content",
   "❌ Low quality content",
-  "✅ Content written by industry experts",
+  "✅ Quality first content",
   "❌ SEO-driven content",
-  "✅ Handpicked content",
+  "✅ Content written by industry experts",
   "❌ AI-generated content",
+  "✅ authentic human-written content",
 ];
 
 export default function Home() {
