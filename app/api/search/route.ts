@@ -45,7 +45,6 @@ export const GET = async (req: NextRequest) => {
           q,
           resultsCount: res?.data?.count ?? 0,
           tab,
-          createdAt: new Date().toISOString(),
         })
       );
     }
