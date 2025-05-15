@@ -94,19 +94,19 @@ export function SearchBar({
     <SearchLayout>
       <div>
         <form onSubmit={onSubmit} className="w-full">
-          <div className="w-full gap-2 flex justify-start items-center group">
+          <div className="w-full gap-1 flex justify-start items-center group border border-dashed rounded-full p-2">
             <Input
               ref={ref}
               placeholder={placeholder}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="h-11 rounded-full border-dashed pl-5 text-lg sm:h-14 disabled:hover:cursor-not-allowed"
+              className="h-10 rounded-full border-none pl-5 text-lg disabled:hover:cursor-not-allowed"
               disabled={isFetching || isDiscovedTab}
             />
             <Button
               size="icon"
               variant="outline"
-              className="size-11 rounded-full border-dashed sm:size-14 grow disabled:hover:cursor-not-allowed"
+              className="size-10 rounded-full grow disabled:hover:cursor-not-allowed border-none"
               disabled={isFetching || isDiscovedTab || !input}
             >
               {isFetching && !isDiscovedTab ? (

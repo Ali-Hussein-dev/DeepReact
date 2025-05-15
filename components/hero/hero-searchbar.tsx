@@ -35,9 +35,9 @@ export const HeroSearchbar = () => {
     };
   }, []);
   return (
-    <div className="mx-auto w-full max-w-3xl py-6">
+    <div className="mx-auto w-full max-w-2xl py-6">
       <form
-        className="gap-3 flex justify-start items-center"
+        className="gap-1 flex justify-start items-center border border-dashed rounded-full p-2"
         onSubmit={onSubmit}
       >
         <Input
@@ -47,12 +47,12 @@ export const HeroSearchbar = () => {
           onChange={(e) => {
             setInput(e.target.value);
           }}
-          className="h-14 rounded-full border-dashed pl-5"
+          className="h-10 rounded-full border-none pl-5"
         />
         <Button
           size="icon"
           variant={"outline"}
-          className="size-14 rounded-full border-dashed"
+          className="size-10 rounded-full border-none"
         >
           <FiSearch />
         </Button>
