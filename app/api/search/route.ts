@@ -21,7 +21,7 @@ export const GET = async (req: NextRequest) => {
     });
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let res:any = {};
+  let res: any = {};
 
   // Don't skip any result
   const offset = page == 1 ? 0 : page + 10;
@@ -33,20 +33,28 @@ export const GET = async (req: NextRequest) => {
   }
 
   after(async () => {
-    // TODO:
-    // store query in Redis
-
     console.info("Run 'after' function for search");
     if (offset === 0) {
       const redis = Redis.fromEnv();
-      await redis.sadd(
-        "search-queries",
-        JSON.stringify({
-          q,
-          resultsCount: res?.data?.count ?? 0,
-          tab,
-        })
-      );
+      const resultsCount = res?.data?.count ?? 0;
+      if (resultsCount > 0) {
+        await redis.sadd(
+          "search-queries",
+          JSON.stringify({
+            q,
+            resultsCount,
+            tab,
+          })
+        );
+      } else {
+        await redis.sadd(
+          "empty-search-queries",
+          JSON.stringify({
+            q,
+            tab,
+          })
+        );
+      }
     }
   });
   // TODO:
