@@ -62,7 +62,7 @@ export const GET = async (req: NextRequest) => {
   if (!res?.data?.count) {
     return NextResponse.json({
       data: null,
-      error: { message: `No results for query ${q}`, reason: { q, tab } },
+      error: { message: `We couldn't find results for '${q}'. We will search the web and bring the best content for your query. Please check back soon!`, reason: { q, tab } },
     });
   }
   return NextResponse.json(res);

@@ -129,6 +129,6 @@
     @apply flex items-center justify-center;
   }
   .error{
-    @apply text-destructive mx-auto text-center p-8 text-lg
+    @apply mx-auto text-center p-8 text-lg text-balance border border-destructive/20 rounded-lg mb-4 text-muted-foreground bg-muted/40 border-dashed;
 }
 }
