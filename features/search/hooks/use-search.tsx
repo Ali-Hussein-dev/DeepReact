@@ -105,11 +105,16 @@ export const useSearch = ({ queryOptions = {} }: UseSearchParams) => {
     });
 
   async function handleTabChange(tab: string) {
-    await setNuqsQueries({
-      tab,
-      page: "1",
-      category: tab === "discover" ? "1" : null,
-    });
+    await setNuqsQueries(
+      {
+        tab,
+        page: "1",
+        category: tab === "discover" ? "1" : null,
+      },
+      {
+        history: "push",
+      }
+    );
     // don't refetch jobs, it will clean the initial data
     if (!queryOptions?.placeholderData) {
       await refetch();
@@ -117,18 +122,23 @@ export const useSearch = ({ queryOptions = {} }: UseSearchParams) => {
   }
 
   async function handlePageChange(activePage: string) {
-    await setNuqsQueries({ page: activePage });
+    await setNuqsQueries(
+      { page: activePage },
+      {
+        history: "push",
+      }
+    );
     await refetch();
   }
   async function handleCategoryChange(category: string) {
-    await setNuqsQueries({ category });
+    await setNuqsQueries({ category }, { history: "push" });
     await refetch();
   }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (input) {
-      await setNuqsQueries({ q: input, page: "1" });
+      await setNuqsQueries({ q: input, page: "1" }, { history: "push" });
       await refetch();
     }
   }
