@@ -1,6 +1,5 @@
 import { AnimatedText } from "@/components/hero/animated-text";
-import { EarlyAccessForm } from "@/components/hero/early-access-form";
-// import { HeroSearchbar } from "@/components/hero/hero-searchbar";
+import { HeroSearchbar } from "@/components/hero/hero-searchbar";
 import { RootLayout } from "@/components/shared/root-layout";
 import { StargazerSection } from "@/features/stargazer/components/stargazer-section";
 
@@ -21,8 +20,7 @@ export default function Home() {
           Search React Ecosystem
         </h1>
         <AnimatedText messages={messages} />
-        <EarlyAccessForm />
-        {/* <HeroSearchbar /> */}
+        <HeroSearchbar />
         <StargazerSection />
       </div>
     </RootLayout>
