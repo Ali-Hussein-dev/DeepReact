@@ -1,56 +1,56 @@
 "use client";
-import {Link} from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/mode-toggle";
-import { FaGithub, FaXTwitter } from "react-icons/fa6";
+import { Link } from "@tanstack/react-router";
 import { Menu } from "lucide-react";
-// import { Logo } from "./shared/logo";
-import { urls } from "@/constants/urls";
+import { FaGithub, FaXTwitter } from "react-icons/fa6";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { urls } from "@/constants/urls";
+import { FavoritesList } from "./favorites-list";
+import { Logo } from "./shared/logo";
 
-const links = [
-  // {
-  //   label: "Roadmap",
-  //   href: "https://formcn.featurebase.app/",
-  //   target: "_blank",
-  //   rel: "noopener noreferrer",
-  // },
-  // {
-  //   label: "Hire me",
-  //   href: "https://ali-hussein.com",
-  //   target: "_blank",
-  //   rel: "noopener noreferrer",
-  // },
-];
+// const links = [
+// 	// {
+// 	//   label: "Roadmap",
+// 	//   href: "https://formcn.featurebase.app/",
+// 	//   target: "_blank",
+// 	//   rel: "noopener noreferrer",
+// 	// },
+// 	// {
+// 	//   label: "Hire me",
+// 	//   href: "https://ali-hussein.com",
+// 	//   target: "_blank",
+// 	//   rel: "noopener noreferrer",
+// 	// },
+// ];
 
 const socialLinks = [
-  { href: urls.github, Icon: FaGithub },
-  { href: urls.twitter, Icon: FaXTwitter },
+	{ href: urls.github, Icon: FaGithub },
+	{ href: urls.twitter, Icon: FaXTwitter },
 ];
 
 export default function Header() {
-  return (
-    <div>
-      <div className="flex flex-row items-center justify-between px-2 md:px-5 py-2">
-        <div>
-          <Link to="/" className="cursor-pointer aspect-video">
-            {/* <Logo /> */} DeepReact
-          </Link>
-        </div>
+	return (
+		<header className="flex flex-row items-center justify-between px-2 md:px-4 h-16 border-b">
+			<div>
+				<Link to="/" className="cursor-pointer aspect-video">
+					<Logo />
+				</Link>
+			</div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center sm:gap-4 gap-2">
-          <nav className="flex gap-2 items-center">
-            <Button variant="ghost" size="sm">
-              <Link to="/submit">Submit</Link>
-            </Button>
-            {/* {links.map(({ href, label, target, rel }) => {
+			{/* Desktop Navigation */}
+			<div className="hidden md:flex items-center sm:gap-4 gap-2">
+				<nav className="flex gap-2 items-center">
+					<FavoritesList />
+					<Button variant="ghost" size="sm">
+						<Link to="/submit">Submit</Link>
+					</Button>
+					{/* {links.map(({ href, label, target, rel }) => {
               return (
                 <Button key={href} variant="ghost" size="sm">
                   <a href={href} target={target} rel={rel}>
@@ -59,41 +59,41 @@ export default function Header() {
                 </Button>
               );
             })} */}
-          </nav>
-          <div className="flex gap-4">
-            {socialLinks.map(({ href, Icon }) => {
-              return (
-                <a
-                  key={href}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon />
-                </a>
-              );
-            })}
-          </div>
-          <ModeToggle />
-        </div>
+				</nav>
+				<div className="flex gap-4">
+					{socialLinks.map(({ href, Icon }) => {
+						return (
+							<a
+								key={href}
+								href={href}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Icon />
+							</a>
+						);
+					})}
+				</div>
+				<ModeToggle />
+			</div>
 
-        {/* Mobile Dropdown Menu */}
-        <div className="md:hidden flex items-center gap-2">
-          <ModeToggle />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="p-2">
-                <Menu size={20} />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="sm:w-56 w-64 px-3 py-4">
-              {/* <DropdownMenuItem asChild>
+			{/* Mobile Dropdown Menu */}
+			<div className="md:hidden flex items-center gap-2">
+				<ModeToggle />
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="ghost" size="sm" className="p-2">
+							<Menu size={20} />
+							<span className="sr-only">Open menu</span>
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end" className="sm:w-56 w-64 px-3 py-4">
+						{/* <DropdownMenuItem asChild>
                 <Link href="/changelog" className="w-full">
                   Changelog
                 </Link>
               </DropdownMenuItem> */}
-              {/* {links.map(({ href, label, target, rel }) => {
+						{/* {links.map(({ href, label, target, rel }) => {
                 return (
                   <DropdownMenuItem key={href} asChild>
                     <a href={href} target={target} rel={rel} className="w-full">
@@ -102,28 +102,25 @@ export default function Header() {
                   </DropdownMenuItem>
                 );
               })} */}
-              <DropdownMenuSeparator />
-              <div className="flex items-center justify-center gap-4 p-2">
-                {socialLinks.map(({ href, Icon }) => {
-                  return (
-                    <a
-                      key={href}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1 hover:bg-accent rounded-md transition-colors"
-                    >
-                      <Icon size={16} />
-                    </a>
-                  );
-                })}
-              </div>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
-
-      <hr />
-    </div>
-  );
+						<DropdownMenuSeparator />
+						<div className="flex items-center justify-center gap-4 p-2">
+							{socialLinks.map(({ href, Icon }) => {
+								return (
+									<a
+										key={href}
+										href={href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="p-1 hover:bg-accent rounded-md transition-colors"
+									>
+										<Icon size={16} />
+									</a>
+								);
+							})}
+						</div>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			</div>
+		</header>
+	);
 }
