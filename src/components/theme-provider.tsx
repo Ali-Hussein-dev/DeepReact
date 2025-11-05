@@ -143,7 +143,6 @@ const Theme = ({
 					? resolved
 					: fallback;
 				// @ts-expect-error - colorScheme is not typed
-				// @ts-expect-error - colorScheme is not typed
 				d.style.colorScheme = colorScheme;
 			}
 

@@ -18,5 +18,7 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "registries": {}
+  "registries": {
+    "@formcn": "https://formcn.dev/r/{name}.json"
+  }
 }
