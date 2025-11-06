@@ -111,10 +111,10 @@ export function SourceSubmissionForm() {
 	const addSource = useMutation(api.sources.submitSource);
 	const { handleSubmit, formState } = form;
 	const RepoAction = useAction(api.actions.getRepoInfoAction);
-	const onSubmit = async (data: Schema) => {
+	const onSubmit = async ({ github_url = "", ...data }: Schema) => {
 		let github: undefined | { url: string; stars: number };
-		if (data.github_url) {
-			const repoInfo = await RepoAction({ url: data.github_url });
+		if (github_url) {
+			const repoInfo = await RepoAction({ url: github_url });
 			github = repoInfo;
 		}
 		const options = filterTags[data.category as keyof typeof filterTags] ?? [];

@@ -51,7 +51,6 @@ export const submitSource = mutation({
     email: v.string(),
     // optional fields
     affiliate_url: v.optional(v.string()),
-    github_url: v.optional(v.string()),
     og_image_url: v.optional(v.string()),
     sponsored: v.optional(v.boolean()),
     subscribed: v.optional(v.boolean()),
@@ -71,14 +70,26 @@ export const submitSource = mutation({
       logo_url: args.logo_url,
       tags: args.tags,
       affiliate_url: args.affiliate_url,
-      status: "approved",
+      status: "in-review",
       email: args.email,
       og_image_url: args.og_image_url,
       sponsored: args.sponsored,
       subscribed: args.subscribed,
       note: args.note,
       github: args.github,
-      embedding: await embed(args.description),
+      // embedding: await embed(args.description),
+    });
+  },
+});
+
+export const submitEmail = mutation({
+  args: {
+    email: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.insert("emails", {
+      email: args.email,
+      verified: false,
     });
   },
 });

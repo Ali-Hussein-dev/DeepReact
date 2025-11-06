@@ -15,6 +15,7 @@ import {
 import {
 	Drawer,
 	DrawerContent,
+	DrawerDescription,
 	DrawerHeader,
 	DrawerTitle,
 	DrawerTrigger,
@@ -51,7 +52,7 @@ export function FavoritesList() {
 	return (
 		<Drawer direction="right">
 			<DrawerTrigger asChild>
-				<Button variant="ghost">Favorites list</Button>
+				<Button variant="ghost">Fav list</Button>
 			</DrawerTrigger>
 
 			<DrawerContent>
@@ -60,7 +61,9 @@ export function FavoritesList() {
 						<BsBookmarkStar className="size-4 mr-2 inline-block" />
 						Favorites list
 					</DrawerTitle>
-					{/* <DrawerDescription>Any content goes here.</DrawerDescription> */}
+					<DrawerDescription>
+						Your bookmarked resources and tools for quick access
+					</DrawerDescription>
 				</DrawerHeader>
 				<div>
 					{markedList?.map((source) => (

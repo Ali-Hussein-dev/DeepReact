@@ -37,9 +37,12 @@ const socialLinks = [
 export default function Header() {
 	return (
 		<header className="flex flex-row items-center justify-between px-2 md:px-4 h-16 border-b">
-			<div>
-				<Link to="/" className="cursor-pointer aspect-video">
+			<div className="">
+				<Link to="/" className="cursor-pointer aspect-video flex items-center">
 					<Logo />
+					<span className="-translate-x-7 text-xs translate-y-1 border px-1 py-0.5 rounded-full">
+						🏗️ WIP
+					</span>
 				</Link>
 			</div>
 

@@ -39,56 +39,47 @@ function FilterSidebar() {
 			? search.filter.split(",")
 			: [];
 	return (
-		<div className="">
+		<div className="border-l border-dashed pl-3">
 			{coursesTags.map((o) => {
 				const isActive = activeTags.includes(o.value);
 				return (
-					<div key={o.value}>
-						<div className="pl-[7px]">
-							<div className="py-2 flex flex-col gap-2 border-l border-dashed pl-3">
-								<Button
-									key={o.value}
-									size="sm"
-									// variant={isActive ? "outline" : "ghost"}
-									variant={"ghost"}
-									className="justify-between w-full text-sm"
-									asChild
-								>
-									<Link
-										to="."
-										search={(prev) => {
-											const prevList = Array.isArray(prev.filter)
-												? prev.filter
-												: typeof prev.filter === "string" && prev.filter.length
-													? prev.filter.split(",").filter(Boolean)
-													: [];
-											const exists = prevList.includes(o.value);
-											const nextList = exists
-												? prevList.filter((v) => v !== o.value)
-												: [...prevList, o.value];
-											if (nextList.length === 0) {
-												const { filter, ...rest } = prev as Record<
-													string,
-													unknown
-												>;
-												return rest as typeof prev;
-											}
-											return { ...prev, filter: nextList.join(",") };
-										}}
-									>
-										{o.label}
-										{isActive ? (
-											<span className="">
-												<XIcon />
-											</span>
-										) : (
-											""
-										)}
-									</Link>
-								</Button>
-							</div>
-						</div>
-					</div>
+					<Button
+						key={o.value}
+						size="sm"
+						// variant={isActive ? "outline" : "ghost"}
+						variant={"ghost"}
+						className="justify-between w-full text-sm"
+						asChild
+					>
+						<Link
+							to="."
+							search={(prev) => {
+								const prevList = Array.isArray(prev.filter)
+									? prev.filter
+									: typeof prev.filter === "string" && prev.filter.length
+										? prev.filter.split(",").filter(Boolean)
+										: [];
+								const exists = prevList.includes(o.value);
+								const nextList = exists
+									? prevList.filter((v) => v !== o.value)
+									: [...prevList, o.value];
+								if (nextList.length === 0) {
+									const { filter, ...rest } = prev as Record<string, unknown>;
+									return rest as typeof prev;
+								}
+								return { ...prev, filter: nextList.join(",") };
+							}}
+						>
+							{o.label}
+							{isActive ? (
+								<span className="">
+									<XIcon />
+								</span>
+							) : (
+								""
+							)}
+						</Link>
+					</Button>
 				);
 			})}
 		</div>

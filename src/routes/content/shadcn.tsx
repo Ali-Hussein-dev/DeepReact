@@ -47,49 +47,46 @@ function FilterSidebar() {
 			? search.filter.split(",")
 			: [];
 	return (
-		<div className="w-full ">
+		<div className="border-l border-dashed pl-3">
 			{shadcnTags.map((o) => {
 				const isActive = activeTags.includes(o.value);
 				return (
-					<div key={o.value} className=" w-full">
-						<Button
-							key={o.value}
-							size="sm"
-							// variant={isActive ? "outline" : "ghost"}
-							variant={"ghost"}
-							className="justify-between w-full text-sm"
-							asChild
+					<Button
+						key={o.value}
+						size="sm"
+						variant={"ghost"}
+						className="justify-between w-full text-sm"
+						asChild
+					>
+						<Link
+							to="."
+							search={(prev) => {
+								const prevList = Array.isArray(prev.filter)
+									? prev.filter
+									: typeof prev.filter === "string" && prev.filter.length
+										? prev.filter.split(",").filter(Boolean)
+										: [];
+								const exists = prevList.includes(o.value);
+								const nextList = exists
+									? prevList.filter((v) => v !== o.value)
+									: [...prevList, o.value];
+								if (nextList.length === 0) {
+									const { filter, ...rest } = prev as Record<string, unknown>;
+									return rest as typeof prev;
+								}
+								return { ...prev, filter: nextList.join(",") };
+							}}
 						>
-							<Link
-								to="."
-								search={(prev) => {
-									const prevList = Array.isArray(prev.filter)
-										? prev.filter
-										: typeof prev.filter === "string" && prev.filter.length
-											? prev.filter.split(",").filter(Boolean)
-											: [];
-									const exists = prevList.includes(o.value);
-									const nextList = exists
-										? prevList.filter((v) => v !== o.value)
-										: [...prevList, o.value];
-									if (nextList.length === 0) {
-										const { filter, ...rest } = prev as Record<string, unknown>;
-										return rest as typeof prev;
-									}
-									return { ...prev, filter: nextList.join(",") };
-								}}
-							>
-								{o.label}
-								{isActive ? (
-									<span className="">
-										<XIcon />
-									</span>
-								) : (
-									""
-								)}
-							</Link>
-						</Button>
-					</div>
+							{o.label}
+							{isActive ? (
+								<span className="">
+									<XIcon />
+								</span>
+							) : (
+								""
+							)}
+						</Link>
+					</Button>
 				);
 			})}
 		</div>
