@@ -50,7 +50,7 @@ const Background = ({
 // 	{
 // 		src: "https://cdn.brandfetch.io/idJ3Cg8ymG/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1668515610854",
 // 	},
-];
+// ];
 function App() {
 	return (
 		<div className="min-h-[calc(100vh-4rem)] bg-background text-foreground flex flex-col w-full">
