@@ -1,13 +1,16 @@
+import { Image } from "@unpic/react";
 import { api } from "convex/_generated/api";
 import { useMutation } from "convex/react";
 import { XIcon } from "lucide-react";
 import { Activity, useState } from "react";
 import { RiSendPlaneLine } from "react-icons/ri";
+import { toast } from "sonner";
+import z from "zod";
 import {
 	AvatarGroup,
 	AvatarGroupTooltip,
 } from "@/components/animate-ui/components/animate/avatar-group";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
 
@@ -65,12 +68,17 @@ export function Subscribe() {
 							variant="ghost"
 							size="icon-sm"
 							onClick={() => {
-								mutate({ email });
-								setModeManager((prv) => ({
-									...prv,
-									submit: "hidden",
-									submitted: "visible",
-								}));
+								if (z.email().safeParse(email).success) {
+									mutate({ email });
+									setModeManager((prv) => ({
+										...prv,
+										submit: "hidden",
+										submitted: "visible",
+									}));
+								} else {
+									console.log("invalid email");
+									toast.error("Please enter a valid email");
+								}
 							}}
 						>
 							<RiSendPlaneLine />
@@ -199,7 +207,13 @@ export function Newsletter() {
 										key={expert.name}
 										className="size-12 border-3 border-background"
 									>
-										<AvatarImage src={expert.src} />
+										<Image
+											layout="constrained"
+											src={expert.src}
+											width={60}
+											height={60}
+										/>
+
 										<AvatarFallback>{expert.name}</AvatarFallback>
 										<AvatarGroupTooltip>{expert.name}</AvatarGroupTooltip>
 									</Avatar>
