@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { HoleBackground } from "@/components/animate-ui/components/backgrounds/hole";
 import { Newsletter } from "@/components/newsletter";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -34,7 +35,8 @@ const Background = ({
 					"repeating-linear-gradient(45deg, transparent, transparent 2px, var(--accent) 2px, var(--accent) 4px)",
 			}}
 		/>
-		<div className={cn("z-10 isolate size-full", parentClassName)}>
+
+		<div className={cn("z-10 isolate relative size-full", parentClassName)}>
 			{children}
 		</div>
 	</div>
@@ -56,16 +58,17 @@ function App() {
 		<div className="min-h-[calc(100vh-4rem)] bg-background text-foreground flex flex-col w-full">
 			<Background
 				className="max-w-full size-full grow"
-				parentClassName="grid grid-cols-14 min-h-screen h-full"
+				parentClassName="grid grid-cols-20 min-h-screen h-full"
 			>
-				<div className="border-x h-full bg-background col-start-2 col-end-14 grow">
-					<div className="p-4 md:p-10 lg:p-12  grid place-items-center h-[85vh]">
-						<div className="flex items-center flex-col gap-3 justify-between pb-10">
-							<h1 className="text-2xl font-bold md:text-4xl lg:text-5xl lg:font-extrabold">
+				<div className="border-x h-full bg-background col-start-1 md:col-start-2 grow md:col-end-20 col-end-21">
+					<div className="p-4 md:p-10 lg:p-12  grid place-items-center h-[85vh] relative">
+						<HoleBackground className="absolute inset-0 flex items-center justify-center rounded-xl" />
+						<div className="flex items-center flex-col gap-3 justify-between pb-10 z-10 isolate">
+							<h1 className="text-3xl font-extrabold md:text-4xl lg:text-5xl md:font-black text-center tracking-tight">
 								Deep Dive into the <span className="text-[#58919e]">React</span>{" "}
 								Ecosystem
 							</h1>
-							<p className="text-muted-foreground pb-3 lg:text-lg">
+							<p className="text-muted-foreground pb-3 lg:text-lg text-center">
 								Discover top tools and resources without digging around
 							</p>
 							<div className="flex items-center gap-3">

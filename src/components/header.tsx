@@ -37,13 +37,13 @@ const socialLinks = [
 export default function Header() {
 	return (
 		<header className="flex flex-row items-center justify-between px-2 md:px-4 h-16 border-b">
-			<div className="">
-				<Link to="/" className="cursor-pointer aspect-video flex items-center">
+			<div className="flex gap-1 items-end">
+				<Link to="/" className="cursor-pointer w-fit h-fit">
 					<Logo />
-					<span className="-translate-x-7 text-xs translate-y-1 border px-1 py-0.5 rounded-full">
-						🏗️ WIP
-					</span>
 				</Link>
+				<span className="h-fit text-xs -translate-y-2 border px-1 py-0.5 rounded-full">
+					🏗️ Beta
+				</span>
 			</div>
 
 			{/* Desktop Navigation */}
@@ -82,7 +82,6 @@ export default function Header() {
 
 			{/* Mobile Dropdown Menu */}
 			<div className="md:hidden flex items-center gap-2">
-				<ModeToggle />
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant="ghost" size="sm" className="p-2">
@@ -91,22 +90,24 @@ export default function Header() {
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end" className="sm:w-56 w-64 px-3 py-4">
+						<FavoritesList />
 						{/* <DropdownMenuItem asChild>
                 <Link href="/changelog" className="w-full">
-                  Changelog
+				Changelog
                 </Link>
               </DropdownMenuItem> */}
 						{/* {links.map(({ href, label, target, rel }) => {
                 return (
-                  <DropdownMenuItem key={href} asChild>
+					<DropdownMenuItem key={href} asChild>
                     <a href={href} target={target} rel={rel} className="w-full">
-                      {label}
+					{label}
                     </a>
-                  </DropdownMenuItem>
-                );
-              })} */}
+					</DropdownMenuItem>
+					);
+					})} */}
 						<DropdownMenuSeparator />
 						<div className="flex items-center justify-center gap-4 p-2">
+							<ModeToggle />
 							{socialLinks.map(({ href, Icon }) => {
 								return (
 									<a

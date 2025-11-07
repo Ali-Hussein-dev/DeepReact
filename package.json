@@ -15,6 +15,7 @@
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.13.8",
     "@convex-dev/react-query": "0.0.0-alpha.11",
+    "@floating-ui/react": "^0.27.16",
     "@hookform/resolvers": "^5.2.2",
     "@octokit/rest": "^22.0.1",
     "@radix-ui/react-accordion": "^1.2.12",

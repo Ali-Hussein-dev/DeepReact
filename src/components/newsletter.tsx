@@ -3,15 +3,13 @@ import { useMutation } from "convex/react";
 import { XIcon } from "lucide-react";
 import { Activity, useState } from "react";
 import { RiSendPlaneLine } from "react-icons/ri";
+import {
+	AvatarGroup,
+	AvatarGroupTooltip,
+} from "@/components/animate-ui/components/animate/avatar-group";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "./ui/tooltip";
 
 type Mode = "visible" | "hidden";
 //======================================
@@ -182,8 +180,8 @@ export function Newsletter() {
 	return (
 		<div className="border-t w-full p-1.5">
 			<Card>
-				<div className="bg-card/80 rounded-sm ">
-					<div className="gap-1 p-1 sm:p-3 lg:p-8 lg:py-20">
+				<div className="">
+					<div className="gap-1 p-2 py-8 sm:p-3 lg:p-8 lg:py-20">
 						<h2 className="text-2xl sm:text-3xl md:text-4xl mb-2 font-bold tracking-tighter text-center text-foreground">
 							Join the Newsletter
 						</h2>
@@ -194,34 +192,19 @@ export function Newsletter() {
 							<HighlightText>CTOs</HighlightText>, and{" "}
 							<HighlightText>seasoned pros</HighlightText> in the field.
 						</p>
-						<div className="space-y-3 mb-6">
-							<div className="flex flex-wrap -space-x-4 justify-center items-center">
+						<div className="mb-6">
+							<AvatarGroup className="flex-wrap justify-center h-auto">
 								{experts.map((expert) => (
-									<TooltipProvider key={expert.name}>
-										<Tooltip delayDuration={100}>
-											<TooltipTrigger>
-												<Avatar className="size-12 border-2 border-black hover:scale-105 hover:z-50 hover:shadow-xl hover:isolate transition-all duration-300 relative">
-													<AvatarImage src={expert.src} alt={expert.name} />
-													<AvatarFallback className="bg-gray-800">
-														{expert.name
-															.split(" ")
-															.map((n) => n[0])
-															.join("")}
-													</AvatarFallback>
-												</Avatar>
-											</TooltipTrigger>
-											<TooltipContent arrowPadding={2} sideOffset={5}>
-												<div className="">
-													<h4 className="font-semibold mb-0.5">
-														{expert.name}
-													</h4>
-													<div className="text-xs">{expert.subtitle}</div>
-												</div>
-											</TooltipContent>
-										</Tooltip>
-									</TooltipProvider>
+									<Avatar
+										key={expert.name}
+										className="size-12 border-3 border-background"
+									>
+										<AvatarImage src={expert.src} />
+										<AvatarFallback>{expert.name}</AvatarFallback>
+										<AvatarGroupTooltip>{expert.name}</AvatarGroupTooltip>
+									</Avatar>
 								))}
-							</div>
+							</AvatarGroup>
 						</div>
 						<Subscribe />
 						{/* <Button asChild className="px-6 rounded-xl gap-2">
