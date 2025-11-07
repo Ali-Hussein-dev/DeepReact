@@ -1,4 +1,5 @@
 import { Link, useMatchRoute } from "@tanstack/react-router";
+import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { sidebarLinks } from "@/constants/urls";
 import { Button } from "../ui/button";
@@ -41,11 +42,19 @@ export function ContentLayout({
 							}}
 						/>
 						<div className="bg-background w-full mx-auto z-20 isolate">
-							<ErrorBoundary
-								FallbackComponent={() => <div>Something went wrong</div>}
+							<Suspense
+								fallback={
+									<div className="flex items-center justify-center h-full p-10">
+										Loading...
+									</div>
+								}
 							>
-								{children}
-							</ErrorBoundary>
+								<ErrorBoundary
+									FallbackComponent={() => <div>Something went wrong</div>}
+								>
+									{children}
+								</ErrorBoundary>
+							</Suspense>
 						</div>
 					</div>
 				</Content>
