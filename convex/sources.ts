@@ -1,6 +1,5 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
-import { embed } from "../src/lib/embd";
 /**
  * TODO
  * - send only necessary fields
