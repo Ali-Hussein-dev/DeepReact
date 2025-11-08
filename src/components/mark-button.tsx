@@ -1,17 +1,12 @@
+import type { Source } from "convex/schema";
 import { BsBookmarkFill, BsBookmarkPlus } from "react-icons/bs";
 import { useFavoritesList } from "./favorites-list";
 import { Button } from "./ui/button";
 
 //======================================
-export function MarkButton({
-	id,
-	source,
-}: {
-	id: string;
-	source: Record<string, any>;
-}) {
+export function MarkButton({ source }: { source: Source }) {
 	const { isMarked, addItem, removeItem } = useFavoritesList();
-
+	const id = source._id;
 	return (
 		<Button
 			size="icon"
