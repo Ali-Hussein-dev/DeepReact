@@ -1,9 +1,4 @@
-import {
-	createFileRoute,
-	Link,
-	useParams,
-	useSearch,
-} from "@tanstack/react-router";
+import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
 import { ArrowUpRight, XIcon } from "lucide-react";
 import { CiStar } from "react-icons/ci";
 import { z } from "zod";

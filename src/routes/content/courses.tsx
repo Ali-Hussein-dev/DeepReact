@@ -1,6 +1,5 @@
 import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
 import { ArrowUpRight, XIcon } from "lucide-react";
-import { CgShapeCircle } from "react-icons/cg";
 import { z } from "zod";
 import { MarkButton } from "@/components/mark-button";
 import { ContentLayout } from "@/components/shared/content-layout";
