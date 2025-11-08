@@ -10,4 +10,6 @@ count.txt
 .wrangler
 .output
 .vinxi
-todos.json
+
+
+src/routeTree.gen.ts
