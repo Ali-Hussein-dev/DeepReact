@@ -25,6 +25,7 @@ export const templatesTags = [
 	{ label: "Dashboard", value: "dashboard", group: "Use Cases" },
 	{ label: "AI Chat", value: "ai-chat", group: "Use Cases" },
 	{ label: "Blog", value: "blog", group: "Use Cases" },
+	{ label: "Portfolio", value: "portfolio", group: "Use Cases" },
 	// auth
 	{ label: "Better Auth", value: "better-auth", group: "Auth" },
 	{ label: "Clerk", value: "clerk", group: "Auth" },
@@ -41,10 +42,11 @@ export const templatesTags = [
 	{ label: "Firebase", value: "firebase", group: "Backend" },
 	// payment
 	{ label: "Polar", value: "polar", group: "Payment" },
-	{ label: "Stripe", value: "stripe", group: "Payment" },
+	{ label: "Creem", value: "creem", group: "Payment" },
 	{ label: "PayPal", value: "paypal", group: "Payment" },
 	{ label: "Paddle", value: "paddle", group: "Payment" },
-	{ label: "Chargebee", value: "chargebee", group: "Payment" },
+	{ label: "Stripe", value: "stripe", group: "Payment" },
+	{ label: "Dodo Payment", value: "dodo-payment", group: "Payment" },
 	// headless cms
 	{ label: "Sanity", value: "sanity", group: "CMS" },
 	{ label: "Medusa", value: "medusa", group: "CMS" },
@@ -58,6 +60,9 @@ export const templatesTags = [
 	{ label: "Redis", value: "redis", group: "DB" },
 	{ label: "Prisma", value: "prisma", group: "DB" },
 	{ label: "Drizzle", value: "drizzle", group: "DB" },
+	// generate
+	{ label: "CLI", value: "cli", group: "others" },
+	{ label: "Vercel AI SDK", value: "vercel-ai-sdk", group: "others" },
 ];
 
 export const shadcnTags = [
@@ -129,6 +134,10 @@ export const packagesTags = [
 	{
 		label: "i18n",
 		value: "i18n",
+	},
+	{
+		label: "Nextjs",
+		value: "nextjs",
 	},
 ];
 

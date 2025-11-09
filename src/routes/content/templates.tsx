@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
+	CardContent,
 	CardDescription,
 	CardFooter,
 	CardHeader,
@@ -142,8 +143,8 @@ function RouteComponent() {
 											</CardDescription>
 										</div>
 									</CardHeader>
-									<CardFooter className="justify-end gap-3">
-										<div className="flex gap-2 grow opacity-0 group-hover:opacity-100">
+									<CardContent>
+										<div className="gap-2 grow group-hover:flex hidden flex-wrap">
 											{source.tags?.map((tag) => (
 												<Badge
 													key={tag.value}
@@ -154,6 +155,8 @@ function RouteComponent() {
 												</Badge>
 											))}
 										</div>
+									</CardContent>
+									<CardFooter className="justify-end gap-3">
 										<MarkButton source={source} />
 										{/* <Button
 											size="icon"
