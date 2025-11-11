@@ -41,9 +41,6 @@ export default function Header() {
 				<Link to="/" className="cursor-pointer w-fit h-fit">
 					<Logo />
 				</Link>
-				<span className="h-fit text-xs -translate-y-2 border px-1 py-0.5 rounded-full">
-					🏗️ Beta
-				</span>
 			</div>
 
 			{/* Desktop Navigation */}

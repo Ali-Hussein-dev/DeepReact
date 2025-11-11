@@ -107,8 +107,9 @@ const PreviewCard = ({
 export function SourceSubmissionForm() {
 	const form = useForm<Schema>({
 		resolver: zodResolver(formSchema),
+		defaultValues: {},
 	});
-	const addSource = useMutation(api.sources.submitSource);
+	const addSource = useAction(api.sources.submitSource);
 	const { handleSubmit, formState } = form;
 	const RepoAction = useAction(api.actions.getRepoInfoAction);
 	const onSubmit = async ({ github_url = "", ...data }: Schema) => {

@@ -49,15 +49,14 @@ const schema = defineSchema({
     sponsored: v.optional(v.boolean()),
     note: v.optional(v.string()),
     subscribed: v.optional(v.boolean()),
-    // embedding: v.array(v.float64()),
-    // deprecated
+    embedding: v.optional(v.array(v.float64())),
   })
-    .index("by_category", ["category"]),
-    // .vectorIndex("by_embedding", {
-    //   vectorField: "embedding",
-    //   dimensions: 1536,
-    //   filterFields: ["name", "description","category"],
-    // }),
+    .index("by_category", ["category"])
+    .vectorIndex("by_embedding", {
+      vectorField: "embedding",
+      dimensions: 1536,
+      filterFields: ["name", "description", "category", "tags"],
+    }),
     emails: defineTable({
     email: v.string(),
     verified: v.boolean(),

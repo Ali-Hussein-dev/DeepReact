@@ -2,6 +2,7 @@ import { Link, useMatchRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { sidebarLinks } from "@/constants/urls";
+import { SourceSearch } from "../search-sources";
 import { Button } from "../ui/button";
 import { Content, FilterSidebar, MainLayoutRoot, Sidebar } from "./layout";
 
@@ -32,29 +33,34 @@ export function ContentLayout({
 						))}
 					</div>
 				</Sidebar>
-				<Content className="border-x max-w-3xl w-full mx-auto">
-					<div className="px-3 relative">
-						<div
-							className="absolute inset-0 z-0"
-							style={{
-								backgroundImage:
-									"repeating-linear-gradient(45deg, transparent, transparent 2px, var(--accent) 2px, var(--accent) 4px)",
-							}}
-						/>
-						<div className="bg-background w-full mx-auto z-20 isolate">
-							<Suspense
-								fallback={
-									<div className="flex items-center justify-center h-full p-10">
-										Loading...
-									</div>
-								}
-							>
-								<ErrorBoundary
-									FallbackComponent={() => <div>Something went wrong</div>}
+				<Content className="border-x">
+					<div className="border-b">
+						<SourceSearch />
+					</div>
+					<div className="border-x max-w-3xl w-full mx-auto">
+						<div className="px-3 relative">
+							<div
+								className="absolute inset-0 z-0"
+								style={{
+									backgroundImage:
+										"repeating-linear-gradient(45deg, transparent, transparent 2px, var(--accent) 2px, var(--accent) 4px)",
+								}}
+							/>
+							<div className="bg-background w-full mx-auto z-20 isolate">
+								<Suspense
+									fallback={
+										<div className="flex items-center justify-center h-full p-10">
+											Loading...
+										</div>
+									}
 								>
-									{children}
-								</ErrorBoundary>
-							</Suspense>
+									<ErrorBoundary
+										FallbackComponent={() => <div>Something went wrong</div>}
+									>
+										{children}
+									</ErrorBoundary>
+								</Suspense>
+							</div>
 						</div>
 					</div>
 				</Content>
