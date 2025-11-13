@@ -73,7 +73,7 @@ function App() {
 							</p>
 							<div className="flex items-center gap-3">
 								<Button>
-									<Link to="/content/templates">Discover</Link>
+									<Link to="/content/courses">Discover</Link>
 								</Button>
 							</div>
 							{/* <div className="flex items-center flex-col gap-3 pt-8 font-medium text-lg">
