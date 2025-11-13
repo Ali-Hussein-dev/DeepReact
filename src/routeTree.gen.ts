@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SubmitRouteImport } from './routes/submit'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ContentTemplatesRouteImport } from './routes/content/templates'
 import { Route as ContentShadcnRouteImport } from './routes/content/shadcn'
 import { Route as ContentPackagesRouteImport } from './routes/content/packages'
 import { Route as ContentHostingRouteImport } from './routes/content/hosting'
@@ -25,11 +24,6 @@ const SubmitRoute = SubmitRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContentTemplatesRoute = ContentTemplatesRouteImport.update({
-  id: '/content/templates',
-  path: '/content/templates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContentShadcnRoute = ContentShadcnRouteImport.update({
@@ -60,7 +54,6 @@ export interface FileRoutesByFullPath {
   '/content/hosting': typeof ContentHostingRoute
   '/content/packages': typeof ContentPackagesRoute
   '/content/shadcn': typeof ContentShadcnRoute
-  '/content/templates': typeof ContentTemplatesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,7 +62,6 @@ export interface FileRoutesByTo {
   '/content/hosting': typeof ContentHostingRoute
   '/content/packages': typeof ContentPackagesRoute
   '/content/shadcn': typeof ContentShadcnRoute
-  '/content/templates': typeof ContentTemplatesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,7 +71,6 @@ export interface FileRoutesById {
   '/content/hosting': typeof ContentHostingRoute
   '/content/packages': typeof ContentPackagesRoute
   '/content/shadcn': typeof ContentShadcnRoute
-  '/content/templates': typeof ContentTemplatesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,7 +81,6 @@ export interface FileRouteTypes {
     | '/content/hosting'
     | '/content/packages'
     | '/content/shadcn'
-    | '/content/templates'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -99,7 +89,6 @@ export interface FileRouteTypes {
     | '/content/hosting'
     | '/content/packages'
     | '/content/shadcn'
-    | '/content/templates'
   id:
     | '__root__'
     | '/'
@@ -108,7 +97,6 @@ export interface FileRouteTypes {
     | '/content/hosting'
     | '/content/packages'
     | '/content/shadcn'
-    | '/content/templates'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,7 +106,6 @@ export interface RootRouteChildren {
   ContentHostingRoute: typeof ContentHostingRoute
   ContentPackagesRoute: typeof ContentPackagesRoute
   ContentShadcnRoute: typeof ContentShadcnRoute
-  ContentTemplatesRoute: typeof ContentTemplatesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,13 +122,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/content/templates': {
-      id: '/content/templates'
-      path: '/content/templates'
-      fullPath: '/content/templates'
-      preLoaderRoute: typeof ContentTemplatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/content/shadcn': {
@@ -182,7 +162,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContentHostingRoute: ContentHostingRoute,
   ContentPackagesRoute: ContentPackagesRoute,
   ContentShadcnRoute: ContentShadcnRoute,
-  ContentTemplatesRoute: ContentTemplatesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
