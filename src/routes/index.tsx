@@ -61,11 +61,11 @@ function App() {
 							<p className="text-muted-foreground pb-3 lg:text-lg text-center">
 								Discover top tools and resources without digging around
 							</p>
-							<div className="flex items-center gap-3">
+							{/* <div className="flex items-center gap-3">
 								<Link to="/content/courses">
 									<Button>Discover</Button>
 								</Link>
-							</div>
+							</div> */}
 							{/* <div className="flex items-center flex-col gap-3 pt-8 font-medium text-lg">
 								Built with
 								<div className="flex gap-4">
