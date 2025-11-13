@@ -1,4 +1,9 @@
-import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
+import {
+	createFileRoute,
+	Link,
+	redirect,
+	useSearch,
+} from "@tanstack/react-router";
 import { ArrowUpRight, XIcon } from "lucide-react";
 import { CgShapeCircle } from "react-icons/cg";
 import { z } from "zod";
@@ -24,6 +29,12 @@ const searchSchema = z.object({
 });
 
 export const Route = createFileRoute("/content/templates")({
+	beforeLoad: () => {
+		// const isDisabled = true; // your condition
+		// if (isDisabled) {
+		// }
+		throw redirect({ to: "/" }); // redirect to home or another route
+	},
 	validateSearch: (search) => searchSchema.parse(search),
 	component: RouteComponent,
 	head: () => ({

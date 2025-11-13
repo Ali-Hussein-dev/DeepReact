@@ -9,11 +9,11 @@ export const categories = [
 		value: "courses",
 		Icon: MdOutlineSchool,
 	},
-	{
-		label: "Templates",
-		value: "templates",
-		Icon: HiOutlineTemplate,
-	},
+	// {
+	// 	label: "Templates",
+	// 	value: "templates",
+	// 	Icon: HiOutlineTemplate,
+	// },
 	{
 		label: "Packages",
 		value: "packages",
