@@ -34,9 +34,9 @@ export function ContentLayout({
 					</div>
 				</Sidebar>
 				<Content className="border-x">
-					<div className="border-b">
+					{/* <div className="border-b">
 						<SourceSearch />
-					</div>
+					</div> */}
 					<div className="border-x max-w-3xl w-full mx-auto">
 						<div className="px-3 relative">
 							<div
