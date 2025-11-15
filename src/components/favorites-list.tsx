@@ -87,20 +87,20 @@ export function FavoritesList() {
 										<CardDescription className="text-sm line-clamp-2">
 											{source.description}
 										</CardDescription>
-									</div>
-								</CardHeader>
-								<CardFooter className="justify-end gap-3">
-									<div className="flex gap-1 grow opacity-0 group-hover:opacity-100 flex-wrap">
-										{source.tags?.map((tag) => (
-											<Badge
-												key={tag.value}
-												variant="outline"
-												className="px-2 py-1 text-xs"
-											>
-												{tag.label}
+										<div className="hidden gap-1 grow group-hover:flex flex-wrap">
+											{source.tags?.map((tag) => (
+												<Badge
+													key={tag.value}
+													variant="outline"
+													className="px-2 py-1 text-xs"
+												>
+													{tag.label}
 											</Badge>
 										))}
 									</div>
+									</div>
+								</CardHeader>
+								<CardFooter className="justify-end gap-3">
 									<Button
 										size="icon"
 										variant="ghost"
