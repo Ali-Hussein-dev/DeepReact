@@ -1,6 +1,5 @@
 "use client";
-import { useConvexAction } from "@convex-dev/react-query";
-import { useQuery } from "@tanstack/react-query";
+import { useAction } from "convex/react";
 import { useSearch } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { api } from "convex/_generated/api";
@@ -36,7 +35,7 @@ export function SourceSearch() {
 	// Get the query from URL params
 	const urlQuery = searchParams.q || "";
 
-	const similarSources = useConvexAction(api.actions.similarSources);
+	const similarSources = useAction(api.actions.similarSources);
 
 	// Initialize search query from URL params on mount
 	useEffect(() => {
@@ -46,22 +45,47 @@ export function SourceSearch() {
 		}
 	}, [urlQuery]);
 
-	// Use TanStack Query for automatic loading, error handling, and caching
-	const {
-		data: searchResults,
-		isLoading,
-		error,
-		isError,
-	} = useQuery({
-		queryKey: ["similarSources", searchQuery],
-		queryFn: () => {
-			console.log("Executing search for:", searchQuery); // Debug log
-			return similarSources({ descriptionQuery: searchQuery });
-		},
-		enabled: !!searchQuery.trim(), // Only run query when we have a search term
-		staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
-		gcTime: 10 * 60 * 1000, // Keep in cache for 10 minutes
-	});
+	// Local query state (no TanStack Query)
+	const [searchResults, setSearchResults] = useState<Source[] | undefined>(undefined);
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState<unknown>(null);
+	const isError = !!error;
+
+	useEffect(() => {
+		let cancelled = false;
+
+		const run = async () => {
+			const q = searchQuery.trim();
+			if (!q) {
+				setSearchResults(undefined);
+				setIsLoading(false);
+				setError(null);
+				return;
+			}
+			try {
+				setIsLoading(true);
+				setError(null);
+				const res = await similarSources({ descriptionQuery: q });
+				if (!cancelled) {
+					setSearchResults(res as unknown as Source[]);
+				}
+			} catch (e) {
+				if (!cancelled) {
+					setError(e);
+					setSearchResults(undefined);
+				}
+			} finally {
+				if (!cancelled) {
+					setIsLoading(false);
+				}
+			}
+		};
+		void run();
+
+		return () => {
+			cancelled = true;
+		};
+	}, [searchQuery, similarSources]);
 
 	// Handle Ctrl+K shortcut
 	useEffect(() => {
@@ -82,7 +106,6 @@ export function SourceSearch() {
 	}, []);
 
 	const handleSearchChange = (value: string) => {
-		console.log("Search changed to:", value); // Debug log
 		setSearchQuery(value);
 		// Don't update URL immediately to avoid circular updates
 		// URL will be updated when user stops typing or selects a result
