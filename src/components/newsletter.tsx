@@ -308,7 +308,7 @@ export function Newsletter() {
 											height={60}
 										/>
 
-										<AvatarFallback>{expert.name}</AvatarFallback>
+										{/* <AvatarFallback>{expert.name}</AvatarFallback> */}
 										<AvatarGroupTooltip>{expert.name}</AvatarGroupTooltip>
 									</Avatar>
 								))}
