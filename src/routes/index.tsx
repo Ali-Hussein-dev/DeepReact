@@ -58,14 +58,14 @@ function App() {
 								Deep Dive into the <span className="text-[#58919e]">React</span>{" "}
 								Ecosystem
 							</h1>
-							<p className="text-muted-foreground pb-3 lg:text-lg text-center">
+							<p className="pb-3 lg:text-lg text-center font-medium">
 								Discover top tools and resources without digging around
 							</p>
-							{/* <div className="flex items-center gap-3">
+							<div className="flex items-center gap-3">
 								<Link to="/content/courses">
-									<Button>Discover</Button>
+									<Button size="lg" className="text-lg">Discover</Button>
 								</Link>
-							</div> */}
+							</div>
 							{/* <div className="flex items-center flex-col gap-3 pt-8 font-medium text-lg">
 								Built with
 								<div className="flex gap-4">

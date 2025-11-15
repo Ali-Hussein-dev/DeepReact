@@ -2,8 +2,8 @@ import { Link, useMatchRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { sidebarLinks } from "@/constants/urls";
-import { SourceSearch } from "../search-sources";
-import { Button } from "../ui/button";
+import { SourceSearch } from "@/components/search-sources";
+import { Button } from "@/components/ui/button";
 import { Content, FilterSidebar, MainLayoutRoot, Sidebar } from "./layout";
 
 //======================================
