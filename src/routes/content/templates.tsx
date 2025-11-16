@@ -29,12 +29,6 @@ const searchSchema = z.object({
 });
 
 export const Route = createFileRoute("/content/templates")({
-	beforeLoad: () => {
-		// const isDisabled = true; // your condition
-		// if (isDisabled) {
-		// }
-		throw redirect({ to: "/" }); // redirect to home or another route
-	},
 	validateSearch: (search) => searchSchema.parse(search),
 	component: RouteComponent,
 	head: () => ({
