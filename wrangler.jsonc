@@ -4,7 +4,7 @@
   "compatibility_date": "2025-09-02",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/react-start/server-entry",
-    "observability": {
+  "observability": {
     "enabled": true,
     "head_sampling_rate": 1,
     "logs": {
@@ -14,7 +14,7 @@
       "invocation_logs": true
     },
     "traces": {
-      "enabled": false,
+      "enabled": true,
       "persist": true,
       "head_sampling_rate": 1
     }
