@@ -62,9 +62,9 @@ function App() {
 								Discover top tools and resources without digging around
 							</p>
 							<div className="flex items-center gap-3">
-								<Link to="/content/courses">
+								{/* <Link to="/content/courses">
 									<Button size="lg" className="text-lg">Discover</Button>
-								</Link>
+								</Link> */}
 							</div>
 							{/* <div className="flex items-center flex-col gap-3 pt-8 font-medium text-lg">
 								Built with
