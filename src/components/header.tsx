@@ -40,7 +40,7 @@ export default function Header() {
 			<div className="">
 				<Link to="/" className="cursor-pointer aspect-video flex items-center">
 					<Logo />
-					<span className="-translate-x-7 text-xs translate-y-1 border px-1 py-0.5 rounded-full">
+					<span className="text-xs translate-y-1 border px-2 py-0.5 rounded-full">
 						🏗️ WIP
 					</span>
 				</Link>
